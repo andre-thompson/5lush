@@ -1,0 +1,98 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  margin-bottom: 50px;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+}
+nav{
+  position: fixed;
+  top: 15%;
+  right: 5%;
+  text-align: center;
+  z-index: 1000;
+}
+#navTable{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#navTable li{
+  float: left;
+}
+
+#navSocials{
+  position: fixed;
+  top: 15%;
+  left: 5%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 25%;
+  max-width: 25%;
+  justify-content: flex-start;
+  width: fit-content;
+}
+#socialIcon{
+  display: block;
+  height: auto;
+  width: 50%;
+}
+#navSocials a{
+ display: flex;
+ width: auto;
+}
+#navTable a{
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+}
+h1{
+
+margin-bottom: 15%;
+}
+#songs-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.song {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  margin: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.song img {
+  width: 100%;
+  border-radius: 10px;
+}
+#logo{
+  width: 50%;
+  height: auto;
+}
+audio {
+  width: 100%;
+  margin-top: 10px;
+}

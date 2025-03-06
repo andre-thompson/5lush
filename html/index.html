@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<title>Stream 5LUSH Now</title>
+  		<link rel="stylesheet" href="css/styles.css">
+		<link rel="icon" href="/images/favicon.ico">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple_favicon.png">
+		<link rel="icon" type="image/png" href="/images/5lush_favicon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+	</head>
+
+	<nav>
+		<ul id="navTable">
+			<li><a href="/index.html">Home</a></li>
+			<li><a href="/music.html">Music</a></li>
+			<li><a href="/refrences.html">Refrences</a></li>
+			<li><a href="/about.html">About</a></li>
+		</ul>
+	
+		
+	</nav>
+	
+	<div id="navSocials">
+		
+		<a href="https://www.instagram.com/aaron.eisel/"><img id="socialIcon" src="/images/instagram.png"></img></a>
+		<a href="https://x.com/bigboislush"><img id="socialIcon" src="/images/twitter.png"></img></a>
+		<a href="https://www.tiktok.com/@slush_eisel"><img id="socialIcon" src="/images/tik-tok.png"></img></a>
+		<a href="https://open.spotify.com/artist/0wScycodqXdKbQ0d4O7qdX?si=F_mNd80yQpeU19iyfkz5mw"><img id="socialIcon" src="/images/spotify-logo.png"></img></a>
+		<a><img id="socialIcon" src="/images/soundcloud.png"></img></a>
+		<a href="https://music.apple.com/us/artist/5lush/1786068448"><img id="socialIcon" src="/images/musical-note.png"></img></a>
+		<a href="https://twitch.tv/bigboislush"><img id="socialIcon" src="/images/twitch.png"></img></a>
+
+	
+	</div>
+
+	<body>
+		<div class="container">
+			<img src="/images/5lush_logo.png" id="logo"</img>		 
+				
+			<div id="songlist">
+				<div class="song" id="num1">
+					<p>Song 1</p>
+				</div>
+				<div class="song" id="num2">
+					<p>Song 2</p>
+				</div>		
+			</div>
+			
+
+
+			<script>
+    				fetch('spotify-api/top_five')
+				.then(response => response.json())
+				.then(topTracks => console.log(topTracks));
+    			</script>
+  		</div>
+	</body>
+
+</html>
