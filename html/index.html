@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -12,52 +12,65 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
 	</head>
-
-	<nav>
-		<ul id="navTable">
-			<li><a href="/index.html">Home</a></li>
-			<li><a href="/music.html">Music</a></li>
-			<li><a href="/refrences.html">Refrences</a></li>
-			<li><a href="/about.html">About</a></li>
-		</ul>
-	
+<div id="container">
+	<div id="navContainer">
+		<div id="navBar">
+			<ul id="navTable">
+				<li><a href="/index.html">Home</a></li>
+				<li><a href="/music.html">Music</a></li>
+				<li><a href="/refrences.html">Refrences</a></li>
+				<li><a href="/about.html">About</a></li>
+			</ul>
+		</div>
 		
-	</nav>
+		<div id="navSocials">
+			<a href="https://www.instagram.com/aaron.eisel/"><img id="socialIcon" src="/images/instagram.png"></img></a>
+			<a href="https://x.com/bigboislush"><img id="socialIcon" src="/images/twitter.png"></img></a>
+			<a href="https://www.tiktok.com/@slush_eisel"><img id="socialIcon" src="/images/tik-tok.png"></img></a>
+			<a href="https://open.spotify.com/artist/0wScycodqXdKbQ0d4O7qdX?si=F_mNd80yQpeU19iyfkz5mw"><img id="socialIcon" src="/images/spotify-logo.png"></img></a>
+			<a href="https://soundcloud.com/5lush-415813864"><img id="socialIcon" src="/images/soundcloud.png"></img></a>
+			<a href="https://music.apple.com/us/artist/5lush/1786068448"><img id="socialIcon" src="/images/musical-note.png"></img></a>
+			<a href="https://twitch.tv/bigboislush"><img id="socialIcon" src="/images/twitch.png"></img></a>
+		</div>
+	</div>		
 	
-	<div id="navSocials">
-		
-		<a href="https://www.instagram.com/aaron.eisel/"><img id="socialIcon" src="/images/instagram.png"></img></a>
-		<a href="https://x.com/bigboislush"><img id="socialIcon" src="/images/twitter.png"></img></a>
-		<a href="https://www.tiktok.com/@slush_eisel"><img id="socialIcon" src="/images/tik-tok.png"></img></a>
-		<a href="https://open.spotify.com/artist/0wScycodqXdKbQ0d4O7qdX?si=F_mNd80yQpeU19iyfkz5mw"><img id="socialIcon" src="/images/spotify-logo.png"></img></a>
-		<a><img id="socialIcon" src="/images/soundcloud.png"></img></a>
-		<a href="https://music.apple.com/us/artist/5lush/1786068448"><img id="socialIcon" src="/images/musical-note.png"></img></a>
-		<a href="https://twitch.tv/bigboislush"><img id="socialIcon" src="/images/twitch.png"></img></a>
-
-	
+	<div class="topLogo">
+		<img src="/images/5lush_logo.png" id="logo"</img>
 	</div>
-
-	<body>
-		<div class="container">
-			<img src="/images/5lush_logo.png" id="logo"</img>		 
+	
 				
-			<div id="songlist">
-				<div class="song" id="num1">
-					<p>Song 1</p>
-				</div>
-				<div class="song" id="num2">
-					<p>Song 2</p>
-				</div>		
-			</div>
+	<div id="songs-list"></div>
+		<script>
+    			fetch('spotify-api/top_five')
+			.then(response => response.json())
+			.then(topTracks => {
+				const container = document.getElementById("songs-list");
+				const tracks = topTracks.tracks;
+				tracks.forEach(track => {
+					const trackName = track.name;
+					const artists = track.artists.map(artist => artist.name).join(', ');
+					const albumArt = track.album.images[0].url;
+					const releaseDate = track.album.release_date;
+					const trackDiv = document.createElement("div");
+					const imageDiv = document.createElement("div");
+					const trackImg = document.createElement("img");
+					trackDiv.classList.add("song");
+					imageDiv.classList.add("imgContainer");
+					trackImg.classList.add("songImg");
+					trackDiv.innerHTML = `<p>Song: ${trackName}</p><p>Artists: ${artists}</p><p>Release Date: ${releaseDate}</p> `;
+					trackImg.src = `${albumArt}`;
+					container.appendChild(trackDiv);
+					imageDiv.appendChild(trackImg);
+					container.appendChild(imageDiv);
+				});
+				
+			})
 			
+    		</script>
+  	</div>
+</div>
 
 
-			<script>
-    				fetch('spotify-api/top_five')
-				.then(response => response.json())
-				.then(topTracks => console.log(topTracks));
-    			</script>
-  		</div>
-	</body>
+
 
 </html>
