@@ -1,8 +1,10 @@
 #container{
   display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  border: 5px solid blue;
   flex-direction: column;
-  width: 100%
-
 }
 body {
   font-family: Arial, sans-serif;
@@ -23,15 +25,14 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  border: 5px solid blue;
   box-sizing: border-box;
   z-index: 1000;
+  border:5px solid red;
 }
 #navBar {
   width: 300px;
   padding: 10px 5%;
   text-align: center;
-  border: 5px solid red;
 }
 
 #navTable {
@@ -48,21 +49,19 @@ body {
   gap: 5px;
   width: 300px;
   height: 50px;
-  border: 5px solid red;
 }
 
 .topLogo {
-  display: flex;
   position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: auto;
-  border: 5px solid red;
+  border: 5px solid yellow;
 }
 #logo{
-  width: 350px;
+  width: 450px;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
 }
 #socialIcon {
   width: 30px;
@@ -84,34 +83,37 @@ h1 {
   margin-bottom: 15%;
 }
 
-#songs-list {
+#box-container {
   gap: 15px;
-  width: 100%;
-  border: 5px solid green;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border: 5px solid green;
+  max-height: 250px;
+}
+#songs-list {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  width: 100%;
+}
+#songs-list > div {
+  display: flex;
+  align-items: center;
 }
 .song{
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #333;
   padding: 10px;
-  border-radius: 10px;
-  max-width: 200px;
-  gap: 15px;
-  flex: 1;
+  max-width: 150px;
   text-align: center;
-  border: 5px solid yellow;
+  flex-direction: column;
 }
 .songImg{
-  width: 200px;
+  width: 150px;
   height: auto;
 }
-.imgContainer{
-  width: 200px;
-  max-width: 200px;
-  border: 5px solid yellow;
-  margin-left: 80%;
+#imgContainer{
+  width: 150px;
+  padding: 20px;
 }
 
 

@@ -12,7 +12,7 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
 	</head>
-<div id="container">
+
 	<div id="navContainer">
 		<div id="navBar">
 			<ul id="navTable">
@@ -33,13 +33,15 @@
 			<a href="https://twitch.tv/bigboislush"><img id="socialIcon" src="/images/twitch.png"></img></a>
 		</div>
 	</div>		
-	
+<div id="container">	
 	<div class="topLogo">
 		<img src="/images/5lush_logo.png" id="logo"</img>
 	</div>
-	
-				
-	<div id="songs-list"></div>
+						
+		<div id="box-container">
+			<div id="songs-list"></div>
+		</div>
+	</div>
 		<script>
     			fetch('spotify-api/top_five')
 			.then(response => response.json())
@@ -68,7 +70,6 @@
 			
     		</script>
   	</div>
-</div>
 
 
 
