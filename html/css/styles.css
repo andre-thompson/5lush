@@ -1,22 +1,14 @@
-#container{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  border: 5px solid blue;
-  flex-direction: column;
-}
 body {
   font-family: Arial, sans-serif;
   background-color: #1e1e1e;
   color: white;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
   margin-bottom: 50px;
 }
+
 
 #navContainer{
   position: fixed;
@@ -83,59 +75,42 @@ h1 {
   margin-bottom: 15%;
 }
 
-#box-container {
-  gap: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 5px solid green;
-  max-height: 250px;
-}
+
 #songs-list {
   display: grid;
-  grid-template-columns: 1fr auto;
   gap: 20px;
-  width: 100%;
+  border: 5px solid white;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
-#songs-list > div {
-  display: flex;
-  align-items: center;
-}
+
 .song{
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   max-width: 150px;
   text-align: center;
-  flex-direction: column;
+  justify-content: center;
 }
 .songImg{
-  width: 150px;
+  width: 100%;
   height: auto;
 }
-#imgContainer{
+.songText{
+  flex-direction: column;
+}
+
+#songImgContainer{
   width: 150px;
-  padding: 20px;
+  height: 150px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 
 
-
-@media (max-width: 768px) {
-  .header {
-    padding: 10px;
-  }
-
-  .topLogo {
-    width: 100px;
-  }
-
-  #socialIcon {
-    width: 25px;
-    height: 25px;
-  }
-
-  #navTable a {
-    font-size: 14px;
-    padding: 8px;
-  }
-}

@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -33,15 +33,13 @@
 			<a href="https://twitch.tv/bigboislush"><img id="socialIcon" src="/images/twitch.png"></img></a>
 		</div>
 	</div>		
-<div id="container">	
+	
 	<div class="topLogo">
-		<img src="/images/5lush_logo.png" id="logo"</img>
+		<img src="/images/5lush_logo.png" id="logo"/>
 	</div>
-						
-		<div id="box-container">
-			<div id="songs-list"></div>
-		</div>
-	</div>
+
+	<div id="songs-list"></div>
+		
 		<script>
     			fetch('spotify-api/top_five')
 			.then(response => response.json())
@@ -54,16 +52,9 @@
 					const albumArt = track.album.images[0].url;
 					const releaseDate = track.album.release_date;
 					const trackDiv = document.createElement("div");
-					const imageDiv = document.createElement("div");
-					const trackImg = document.createElement("img");
 					trackDiv.classList.add("song");
-					imageDiv.classList.add("imgContainer");
-					trackImg.classList.add("songImg");
-					trackDiv.innerHTML = `<p>Song: ${trackName}</p><p>Artists: ${artists}</p><p>Release Date: ${releaseDate}</p> `;
-					trackImg.src = `${albumArt}`;
+					trackDiv.innerHTML = `<div class="songImgContainer"><img src="${albumArt}" class="songImg"/></div><div class="songText"><p>Song: ${trackName}</p><p>Artists: ${artists}</p><p>Release Date: ${releaseDate}</p></div> `;
 					container.appendChild(trackDiv);
-					imageDiv.appendChild(trackImg);
-					container.appendChild(imageDiv);
 				});
 				
 			})
