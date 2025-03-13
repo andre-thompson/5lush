@@ -1,6 +1,7 @@
 //node packages
-const express = require("express")
+const express = require("express");
 const dotenv = require('dotenv').config({ path: './api.env'});
+//icon api info
 
 //spotify api info
 const clientID = process.env.SPOTIFY_CLIENT_ID;

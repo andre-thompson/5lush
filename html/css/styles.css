@@ -1,5 +1,66 @@
+
+.alert{
+  position: fixed;
+  z-index: 10000;
+  margin-top: 5%;
+  width: 100%;
+  height: 100%;
+}
+#innerAlert{
+  width: 85%;
+  height: 75%;
+  background-color: #1e1e2e;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+.closeAlert {
+  margin-right: auto;
+  font-weight: bold;
+  font-size: 44px;
+  cursor: pointer;
+  width: 2.5%;
+  padding: 25px;
+}
+#alertContentContainer{
+  display: flex;
+}
+.alertImgContainer{
+ width: 75%;
+ margin-left: auto;
+ margin-right: 5%;
+ display: grid;
+ grid-template-columns: auto auto;
+ gap: 10px;
+}
+
+.alertTextContainer{
+  width: 50%;
+  margin-left: 5%;
+}
+
+#alertImage{
+  width: 100%;
+  height: auto;
+}
+#alertText1{
+  display: flex;
+  justify-content: left;
+  font-size: 2.5vw;
+  margin-top: 80%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+#alertText2{
+  display: flex;
+  justify-content: left;
+  font-size: 1.5vw;
+  text-decoration: underline;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
 body {
-  font-family: Arial, sans-serif;
   background-color: #1e1e1e;
   color: white;
   justify-content: center;
@@ -7,6 +68,7 @@ body {
   height: 100vh;
   margin: 0;
   margin-bottom: 50px;
+  font-family: "Roboto";
 }
 
 
@@ -19,7 +81,6 @@ body {
   height: 70px;
   box-sizing: border-box;
   z-index: 1000;
-  border:5px solid red;
 }
 #navBar {
   width: 300px;
@@ -31,7 +92,8 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: "Roboto";
 }
 #navTable li{
   display: inline;
@@ -41,6 +103,7 @@ body {
   gap: 5px;
   width: 300px;
   height: 50px;
+  padding: 10px;
 }
 
 .topLogo {
@@ -49,14 +112,13 @@ body {
   justify-content: center;
   width: 100%;
   height: auto;
-  border: 5px solid yellow;
 }
 #logo{
   width: 450px;
   height: auto;
 }
 #socialIcon {
-  width: 30px;
+  width: auto;
   height: auto;
 }
 
@@ -71,45 +133,28 @@ body {
   text-decoration: none;
 }
 
-h1 {
-  margin-bottom: 15%;
-}
-
-
 #songs-list {
   display: grid;
-  gap: 20px;
-  border: 5px solid white;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  grid-template-columns: auto auto auto auto;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
 
 .song{
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  max-width: 150px;
+  max-width: 250px;
   text-align: center;
   justify-content: center;
 }
 .songImg{
   width: 100%;
   height: auto;
-}
-.songText{
-  flex-direction: column;
+  margin-top: 10px;
 }
 
-#songImgContainer{
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
 
 
 
