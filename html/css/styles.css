@@ -152,16 +152,15 @@
   display: flex;
 }
 .alertImgContainer{
- width: 75%;
- margin-left: auto;
- margin-right: 5%;
+ width: 60%;
+ margin-left: 5%;
  display: grid;
  grid-template-columns: auto auto;
  gap: 2%;
 }
 
 .alertTextContainer{
-  width: 50%;
+  width: 25%;
   margin-left: 5%;
 }
 
@@ -184,6 +183,20 @@
   text-decoration: underline;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
+}
+.bio{
+  display: flex;
+  position: relative;
+  border: 1px solid red;
+  top: -50%;
+  width: 100%;
+}
+
+#bioText{
+ color: white;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
 }
 body {
   background-color: #1e1e1e;
@@ -255,6 +268,7 @@ body {
 #socialIcon {
   width: auto;
   height: auto;
+  font-size: 1.75vw;
 }
 
 #navSocials a {
@@ -297,24 +311,27 @@ body {
     width: 35%;
 
   }
-
+  .topLogo{
+    top: -25%;
+  }
   #logo2{
-    top: -4.5vh;
+    top: 10%;
     z-index: 0;
   }
   #navContainer{
     height: auto;
     z-index: 1000;
+    position: relative;
   }
   #navSocials {
     display: grid;
     grid-template-columns: auto auto;
     overflow: visible;
-    gap: 2.5px;
     justify-content: center;
-    position: relative;
     z-index: 1001;
-    width: 15%;
+    width: auto;
+    border: 1px solid blue;
+   
   }
 
   #navSocials a i{
@@ -335,8 +352,60 @@ body {
     align-items: center;
     pointer-events: auto;
     text-decoration: none;
-}
+   }
+   .bio{
+     top: -20%;
+     font-size: 10px; 
+  }
+  
+  #navTable{
+    font-size: 10px;
+  }
 
+  #innerAlert{
+    width: 100%;
+    height: 80%;
+    margin-top: 50px;
+
+  }
+
+  #alertContentContainer{
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .alertImgContainer{
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10%;
+    width: 400px;
+  }
+  #alertImage{
+   height: 100%;
+ }
+  .alertTextContainer{
+   width: 100%;
+   height: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 100px;
+
+ }
+  #alertText1{
+   justify-content: center;
+   font-size: 2.5rem;
+   margin-top: 0;
+ }
+  #alertText2{
+   justify-content: center;
+   font-size: 1rem;
+ }
+
+ .closeAlert i{
+  font-size: 1rem;
+  
+ }
 }
 
 
