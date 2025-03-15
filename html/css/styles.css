@@ -187,8 +187,7 @@
 .bio{
   display: flex;
   position: relative;
-  border: 1px solid red;
-  top: -50%;
+  margin-top: -20vh;
   width: 100%;
 }
 
@@ -198,6 +197,23 @@
  margin-left: auto;
  margin-right: auto;
 }
+.videoContainer{
+ display: flex;
+ justify-content: center;
+ position: relative;
+ left: 25%;
+ margin-top: 5%;
+ margin-bottom: 45%;
+}
+#videoContent{
+ width: 100%;
+}
+#videoContent iframe{
+ width: 50%;
+ height: 350%;
+}
+
+
 body {
   background-color: #1e1e1e;
   color: white;
@@ -354,7 +370,7 @@ body {
     text-decoration: none;
    }
    .bio{
-     top: -20%;
+     top: -5vh;
      font-size: 10px; 
   }
   
@@ -406,6 +422,13 @@ body {
   font-size: 1rem;
   
  }
+ #videoContent{
+   margin-bottom: 60%;
+
+ }
+
+
+
 }
 
 
