@@ -110,6 +110,38 @@ const collectPlaylistObjects = async(parsedPlaylist) => {
 	}
 	return parsedArray;
 };
+
+const parseTopArtists = async(playlists) => {
+	const artistMap = new Map();
+	const songMap = new Map();
+	var contentContainer = [];
+	playlists.forEach((item) => {
+		item.items.forEach((song) => {
+			var artists = [];
+			song.track.artists.forEach((artist) => {artists.push(artist.name);});
+			if(songMap.has(song.track.name)){
+				songMap.set(song.track.name, songMap.get(song.track.name) +1);
+				artists.forEach((artist) => {
+					artistMap.set(artist, artistMap.get(artist) +1);
+				});
+			} else {
+				songMap.set(song.track.name, 1);
+				artists.forEach((artist) => {
+					artistMap.set(artist, 1);
+				});
+				
+			}	
+
+		});
+	});
+
+
+	contentContainer.push(artistMap);
+	contentContainer.push(songMap);
+
+	return contentContainer;
+};
+
 app.get('/top_five', async (req, res) => {
 	const topTracks = await getTopTracks();
 	res.json(topTracks);
@@ -119,7 +151,11 @@ app.get('/top_songs', async (req, res) => {
 	const playlists = await getPlaylists(`160h7citggo4r2wu5vgjvq1xq`);
 	const parsedPlaylists = await parsePlaylistObject(playlists);
 	const playlistTrackObjectContainer = await collectPlaylistObjects(parsedPlaylists);
-	res.json(playlistTrackObjectContainer);
+	var topSongs_Artists = await parseTopArtists(playlistTrackObjectContainer);
+	res.json({
+		topSongs: Array.from(topSongs_Artists[1]),
+		topArtists: Array.from(topSongs_Artists[0])
+	});
 });
 
 
