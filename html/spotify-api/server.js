@@ -114,32 +114,39 @@ const collectPlaylistObjects = async(parsedPlaylist) => {
 const parseTopArtists = async(playlists) => {
 	const artistMap = new Map();
 	const songMap = new Map();
-	var contentContainer = [];
+	
 	playlists.forEach((item) => {
 		item.items.forEach((song) => {
-			var artists = [];
-			song.track.artists.forEach((artist) => {artists.push(artist.name);});
-			if(songMap.has(song.track.name)){
-				songMap.set(song.track.name, songMap.get(song.track.name) +1);
-				artists.forEach((artist) => {
-					artistMap.set(artist, artistMap.get(artist) +1);
-				});
+			const trackName = song.track.name;
+			const artists = song.track.artists.map(artist => artist.name);
+		
+			if(songMap.has(trackName)){
+				const songData = songMap.get(trackName);
+				songData.count += 1;
+				songMap.set(trackName, songData);
 			} else {
-				songMap.set(song.track.name, 1);
-				artists.forEach((artist) => {
-					artistMap.set(artist, 1);
-				});
+				songMap.set(trackName, {count: 1, song: song});
 				
 			}	
-
+			artists.forEach((artist) => {
+				if (artistMap.has(artist)) {
+					const artistData = artistMap.get(artist);
+					artistData.count += 1;
+					artistMap.set(artist, artistData);
+				} else {
+					artistMap.set(artist, {count: 1, song: song});
+				}
+			
+			
+			});
 		});
 	});
 
 
-	contentContainer.push(artistMap);
-	contentContainer.push(songMap);
-
-	return contentContainer;
+	
+	const artistArray = Array.from(artistMap);
+	const songArray = Array.from(songMap);
+	return [artistArray, songArray];
 };
 
 const Merge = (map, leftHead, leftTail, rightHead, rightTail) => {
@@ -149,7 +156,7 @@ const Merge = (map, leftHead, leftTail, rightHead, rightTail) => {
 	var leftPos = leftHead;
 	var rightPos = rightHead;
 	while (leftPos <= leftTail && rightPos <= rightTail) {
-		if(map[leftPos][1] <= map[rightPos][1]) {
+		if(map[leftPos][1].count <= map[rightPos][1].count) {
 			mergedList[mergePos] = map[leftPos];
 			leftPos++;
 		} else {
@@ -196,9 +203,11 @@ app.get('/top_songs', async (req, res) => {
 	const playlists = await getPlaylists(`160h7citggo4r2wu5vgjvq1xq`);
 	const parsedPlaylists = await parsePlaylistObject(playlists);
 	const playlistTrackObjectContainer = await collectPlaylistObjects(parsedPlaylists);
-	var topSongs_Artists = await parseTopArtists(playlistTrackObjectContainer);
-	var topSongs = Array.from(topSongs_Artists[1]);
-	var topArtists = Array.from(topSongs_Artists[0]);
+	const topSongs_Artists = await parseTopArtists(playlistTrackObjectContainer);
+	
+	let topSongs = topSongs_Artists[1];
+	let topArtists = topSongs_Artists[0];
+	
 	MergeSort(topSongs,0, topSongs.length -1);
 	MergeSort(topArtists, 0, topArtists.length -1);
 	res.json({
