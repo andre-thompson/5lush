@@ -146,6 +146,7 @@ const parseTopArtists = async(playlists) => {
 	
 	const artistArray = Array.from(artistMap);
 	const songArray = Array.from(songMap);
+	
 	return [artistArray, songArray];
 };
 
@@ -191,9 +192,17 @@ const MergeSort = (map, startIndex, endIndex) => {
 		Merge(map, startIndex, mid, mid+1, endIndex);
 	}
 
-}
+};
 
+const TopTen = (array) => {
+	let newArray = [];
+	for(let i = array.length -1; i > (array.length-11); i--){
+                newArray.push(array[i]);
 
+        }
+	return newArray;
+
+};
 app.get('/top_five', async (req, res) => {
 	const topTracks = await getTopTracks();
 	res.json(topTracks);
@@ -210,6 +219,11 @@ app.get('/top_songs', async (req, res) => {
 	
 	MergeSort(topSongs,0, topSongs.length -1);
 	MergeSort(topArtists, 0, topArtists.length -1);
+	
+	topSongs = TopTen(topSongs);
+	topArtists = TopTen(topArtists);
+	
+	
 	res.json({
 		topSongs,
 		topArtists

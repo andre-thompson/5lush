@@ -91,7 +91,7 @@
 
 
 	<div id="songs-list"></div>
-		
+			
 		<script>
     			fetch('spotify-api/top_five')
 			.then(response => response.json())
@@ -115,6 +115,7 @@
 			.then(response => response.json())
 			.then(data => {
 				console.log(data.topSongs);
+				console.log(data.topArtists);
 			})
 			
     		</script>
