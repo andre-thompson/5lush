@@ -15,9 +15,7 @@ The purpose of this project is to create a cohesive and dynamic website for my f
 ### Requirements 
  
 1. Nginx 
- 
 2. HTML / CSS 
- 
 3. Node js 
- 
 4. Node packages: dotenv, express, axios
+5. Spotify Web API Token
