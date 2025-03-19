@@ -317,9 +317,34 @@ body {
   height: auto;
   margin-top: 1%;
 }
+#slushPlaylist {
+  width: 100%;
+  display: flex;
+  
+  animation: scroll 120s linear infinite;
+}
 
+@keyframes scroll {
+ 0% {
+	 transform: translateX(0);
+ } 100% {
+	transform: translateX(-100%);
+ }
+}
+.playlistElement {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+}
+.playlistElement p {
+ text-align: center;
+}
 @media only screen and (max-width: 1000px) {
-  #songs-list{
+#slushPlaylist {
+  animation: scroll 10s linear infinite;
+}
+#songs-list{
     grid-template-columns: 40vw 40vw;
 
   }

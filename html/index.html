@@ -89,9 +89,10 @@
 
 
 
-
+	<h1 style="text-align: center;">5LUSH TOP TEN HITS</h1>
 	<div id="songs-list"></div>
-			
+	<h1 style="text-align: center;">5LUSH ESSENTIALS PLAYLIST</h1>
+        <div id="slushPlaylist"></div>			
 		<script>
     			fetch('spotify-api/top_five')
 			.then(response => response.json())
@@ -110,14 +111,42 @@
 				});
 				
 			})
+			fetch('spotify-api/playlist')
+			.then(response => response.json())
+			.then(playlist => {
+				const container = document.getElementById("slushPlaylist");
+				playlist.items.forEach(song => {
+					const trackName = song.track.name;
+					const trackArt = song.track.album.images[1].url;
+					const artists = song.track.artists.map(artist => artist.name).join(', ');
+					const releaseDate = song.track.album.release_date;
+					const trackDiv = document.createElement("div");
+					trackDiv.classList.add("playlistElement");
+					trackDiv.innerHTML = `<img src="${trackArt}"><p>Song: ${trackName}</p><p>Artists: ${artists}</p><p>Release Date: ${releaseDate}</p>`
+					container.appendChild(trackDiv);
+					
+				});
+
+
+
+			})
+			fetch('spotify-api/searchUser')
+			.then(response => response.json())
+			.then(data => {
+				console.log("hello");
+				console.log(data);
+				
+
+
+			})
 			
-			fetch('spotify-api/top_songs')
+			/*fetch('spotify-api/top_songs')
 			.then(response => response.json())
 			.then(data => {
 				console.log(data.topSongs);
 				console.log(data.topArtists);
 			})
-			
+			*/
     		</script>
   	</div>
 

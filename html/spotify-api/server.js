@@ -203,11 +203,37 @@ const TopTen = (array) => {
 	return newArray;
 
 };
+const searchUsername = async (username) => {
+	const token = await getToken(); 
+	try {
+        	const response = await fetch(`https://api.spotify.com/v1/users/${username}`, {
+                method: 'GET',
+                headers: {
+                        	'Content-Type': 'application/json',
+                                'Authorization':`Bearer ${token}`
+                        },
+
+                });
+                	if (!response.ok) throw new Error(`Failed to fetch artists: ${response.statusText}`);
+                        const data = await response.json();
+                        return data;
+        } catch (error) {
+                console.error("Error fetching Spotifiy artists:", error);
+                return null;
+        }
+	
+
+
+};
 app.get('/top_five', async (req, res) => {
 	const topTracks = await getTopTracks();
 	res.json(topTracks);
 });
+app.get('/searchUser', async (req, res) => {
+	const username = await searchUsername('nuzxyz');
+	res.json(username);
 
+});
 app.get('/top_songs', async (req, res) => {
 	const playlists = await getPlaylists(`160h7citggo4r2wu5vgjvq1xq`);
 	const parsedPlaylists = await parsePlaylistObject(playlists);
@@ -230,7 +256,11 @@ app.get('/top_songs', async (req, res) => {
 	});
 });
 
+app.get('/playlist', async (req, res) => {
+	const playlist = await getPlaylistTracks('4tK1JS06cO9YLOYXVL8Jjz');
+	res.json(playlist);
 
+});
 app.listen(PORT, () => {
 	console.log("Server is listening on port: " + PORT);
 });
