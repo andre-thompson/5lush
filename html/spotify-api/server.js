@@ -1,14 +1,29 @@
 //node packages
 const express = require("express");
 const dotenv = require('dotenv').config({ path: './api.env'});
-
+const querystring = require('querystring');
+const cors = require('cors');
 //spotify api info
 const clientID = process.env.SPOTIFY_CLIENT_ID;
 const clientSECRET = process.env.SPOTIFY_CLIENT_SECRET;
-
+//redirect
+const redirect_uri = 'https://5lush.com/budget_wrapped';
 //start server
 const app =  express();
 const PORT = 3000;
+app.use(cors());
+//random string function
+function generateRandomString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+
+
 
 const getToken = async () => {
     try {
@@ -63,12 +78,11 @@ const getPlaylists = async (userID) => {
                                 },
 
 			});
-			 if (!response.ok) throw new Error(`Failed to fetch artists: ${response.statusText}`);
+			 
                          const data = await response.json();
                          return data;
                 } catch (error) {
-                        console.error("Error fetching Spotifiy artists:", error);
-                        return null;
+                        console.log("Error fetching Spotifiy artists:", error);
                 }
 };
 const getPlaylistTracks = async (playlistID) => {
@@ -235,27 +249,47 @@ app.get('/searchUser', async (req, res) => {
 
 });
 app.get('/top_songs', async (req, res) => {
-	const playlists = await getPlaylists(`160h7citggo4r2wu5vgjvq1xq`);
-	const parsedPlaylists = await parsePlaylistObject(playlists);
-	const playlistTrackObjectContainer = await collectPlaylistObjects(parsedPlaylists);
-	const topSongs_Artists = await parseTopArtists(playlistTrackObjectContainer);
+	const user = req.query.user;
+	const playlists = await getPlaylists(`${user}`);
+	if(playlists.error){
+		res.json(playlists);
+	} else {
+		const userProfile = await searchUsername(user);
+		const parsedPlaylists = await parsePlaylistObject(playlists);
+		const playlistTrackObjectContainer = await collectPlaylistObjects(parsedPlaylists);
+		const topSongs_Artists = await parseTopArtists(playlistTrackObjectContainer);
 	
-	let topSongs = topSongs_Artists[1];
-	let topArtists = topSongs_Artists[0];
+		let topSongs = topSongs_Artists[1];
+		let topArtists = topSongs_Artists[0];
 	
-	MergeSort(topSongs,0, topSongs.length -1);
-	MergeSort(topArtists, 0, topArtists.length -1);
+		MergeSort(topSongs,0, topSongs.length -1);
+		MergeSort(topArtists, 0, topArtists.length -1);
 	
-	topSongs = TopTen(topSongs);
-	topArtists = TopTen(topArtists);
+		topSongs = TopTen(topSongs);
+		topArtists = TopTen(topArtists);
 	
 	
-	res.json({
-		topSongs,
-		topArtists
-	});
+		res.json({
+			topSongs,
+			topArtists,
+			userProfile
+		});
+	}
 });
+app.get('/login', async (req, res) => {
+	var state = generateRandomString(16);
+	var scope = 'user-read-private user-read-email';
 
+	res.redirect('https://accounts.spotify.com/authorize?' +
+		querystring.stringify({
+			response_type: 'code',
+			client_id: clientID,
+			scope: scope,
+			redirect_uri: redirect_uri,
+			state: state
+		}));
+
+});
 app.get('/playlist', async (req, res) => {
 	const playlist = await getPlaylistTracks('4tK1JS06cO9YLOYXVL8Jjz');
 	res.json(playlist);

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Stream 5LUSH Now</title>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="css/styles2.css">
+                <link rel="icon" href="/images/favicon.ico">
+                <link rel="apple-touch-icon" sizes="180x180" href="/images/apple_favicon.png">
+                <link rel="icon" type="image/png" href="/images/5lush_favicon.png">
+                <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.png">
+                <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.png">
+        </head>
+	<body>
+		<div id="tutorial">
+			<h1>How to Find Spotify Username:</h1>
+			<img src="/images/spotify1.png"><p>Copy link from Spotify Profile</p>
+			<img src="/images/spotify2.png"><p>Paste link into web browser and copy username, username is contained between /user/ and ?si=</p>
+
+
+		</div>
+		
+		<div id="form">
+			<form id="userForm">
+				<label for="username">Spotify Username:</label>
+				<input type="text" id="username" required>
+
+				<button type="button" onclick="submitUser()">Submit</button>
+		
+
+
+			</form>
+		</div>
+		
+		<div id="container"><h1 id="displayName"></h1><div id="content"><div id="songs"></div><div id="artists"></div></div></div>
+	
+	</body>
+
+	<script>
+		function submitUser() {
+			const user = document.getElementById('username').value;
+			
+			const query = new URLSearchParams({
+				user: user	
+			}).toString();
+		
+		
+			fetch(`spotify-api/top_songs?${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+        
+				
+				const displayNameContainer = document.getElementById("displayName");
+				const songContainer = document.getElementById("songs");
+				const artistContainer = document.getElementById("artists");
+				
+				const artistHeader = document.createElement("h1");
+				const songHeader = document.createElement("h1");
+				const displayNameHeader = document.createElement("h1");
+
+				const displayName = data.userProfile.display_name;
+
+				
+				displayNameHeader.innerHTML = `${displayName}'s Spotify Data`;
+				songHeader.innerHTML = `Top Ten Songs`;
+				artistHeader.innerHTML = `Top Ten Artists`;
+				
+				displayNameContainer.appendChild(displayNameHeader);
+				songContainer.appendChild(songHeader);
+				artistContainer.appendChild(artistHeader);
+
+				for(var i = 0; i < 10; i++){
+					const songDiv = document.createElement("div");
+					const songArt = data.topSongs[i][1].song.track.album.images[0].url;
+					const songName = data.topSongs[i][0];
+					const artists = data.topSongs[i][1].song.track.artists.map(artist => artist.name).join(',');
+					const song_added_at = data.topSongs[i][1].song.added_at;
+					const count = data.topSongs[i][1].count;
+					songDiv.innerHTML = `<p><img src=${songArt}></p></img><p>Song: ${songName}</p><p>Artists: ${artists}</p><p>Added: ${song_added_at}</p><p>In ${count} different playlists</p>`;
+					songContainer.appendChild(songDiv);
+
+
+				}
+				for(var i=0; i < 10; i++){
+					const artistDiv = document.createElement("div");
+					artistDiv.classList.add("artist");
+					const artistName = data.topArtists[i][0];
+					const song_added_at = data.topArtists[i][1].song.added_at;
+					const count = data.topArtists[i][1].count;
+					artistDiv.innerHTML = `<div id="artistContent"><p>Artist: ${artistName}</p><p>Artist's songs appear ${count} times among playlists</p><p>Last Added: ${song_added_at}</p></div>`
+					artistContainer.appendChild(artistDiv);
+
+				}
+
+                        })		
+	
+			
+		}
+
+		function login() {
+			fetch(`spotify-api/login`)
+
+
+		}
+	</script>
+
+
+
+
+</html>
