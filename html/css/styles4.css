@@ -1,0 +1,422 @@
+html {
+    background-image: url('/images/bday/bg.png');
+    background-repeat: repeat;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.bm {
+	display: flex;
+	position: absolute;
+	top: 193vh;
+	height: 20vh;
+	left: 47vw;
+	z-index: 4;
+}
+#bm {
+	width: auto;
+	height: 15vh;
+}
+.mcr {
+	display: flex;
+	position: absolute;
+	top: 143vh;
+	left: 45vw;
+	z-index: 6;
+}
+.pumpkin{
+	display: flex;
+	position: absolute;
+	top: 185vh;
+	left: 35vw;
+	z-index: 4;
+	height: 10vh;
+}
+.bat {
+	display: flex;
+	position: absolute;
+	top: 187vh;
+	right: 33vw;
+	z-index: 4;
+	height: 10vh;
+
+}
+.cake{
+	display: flex;
+	position: absolute;
+	width: 100vw;
+	top: 100vh;
+	z-index: 10;
+}
+.bloodbar {
+	display: flex;
+	position: absolute;
+	top: 207vh;
+	left: 13vw;
+	z-index: 4;
+	height: 5vh;
+}
+#bloodbar {
+	width: 75vw;
+}
+.eyeball {
+	display: flex;
+	position: absolute;
+	top: 130vh;
+	left: 47vw;
+	z-index: 4;
+	height: 10vh;
+
+}
+.triangle {
+	display: flex;
+	position: absolute;
+	height: 150vh;
+	width: 150vw;
+	z-index: 3;
+	top: 115vh;
+}
+#triangle{ 
+	margin-left: 13vw;
+	
+}
+.cat {
+	top: 54vh;
+	left: 31vw;
+	position: absolute;
+	display: flex;
+	z-index: 6;
+}
+.kiss {
+	top: 75vh;
+	z-index: 5;
+	position: absolute;
+	display: flex;
+	left: 65vw;
+}
+.sixtynine {
+	display: flex;
+	position: absolute;
+	margin-left: 18vw;
+	top: 40vh;
+
+}
+.iheartu {
+	display: flex;
+	position: absolute;
+	margin-left: 76vw;
+	top: 43vh;
+
+}
+.flowers1{
+	background-image: url('/images/bday/flowers1.png');
+	background-repeat: repeat;
+	display: flex;
+	top: 67vh;
+	width: 90vw;
+	height: 4vh;
+	position: absolute;
+	z-index: 5;
+	margin-left: 5vw;
+}
+.flowers2 {
+	background-image: url('/images/bday/flowers2.png');
+	background-repeat: repeat;
+	display: flex;
+	top: 92vh;
+	width: 90vw;
+	height: 4vh;
+	position: absolute;
+	z-index: 5;
+	margin-left: 5vw;
+}
+.walls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    height: 300vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.leftwall {
+    width: 5%;
+    background-image: url('/images/bday/leftwall.png');
+    background-repeat: repeat;
+    min-height: 100vh;
+}
+
+.rightwall {
+    width: 5%;
+    background-image: url('/images/bday/rightwall.png');
+    background-repeat: repeat;
+    z-index: 2;
+}
+
+.heartContainer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    z-index: 2;
+}
+
+#heart {
+    width: 30%;
+}
+
+#skelehead {
+    position: absolute;
+    width: 5%;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+#spider {
+    width: 6%;
+    height: auto;
+    position: absolute;
+    left: 60%;
+
+    transform: rotate(45deg);
+    z-index: 2;
+}
+
+.timCurry {
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    z-index: 2;
+    min-height: 10%;
+}
+
+#tim {
+    width: 10%;
+    position: absolute;
+    left: 15%;
+}
+
+.miniMe {
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    z-index: 3;
+    min-height: 10%;
+}
+
+#mini {
+    width: 10%;
+    position: absolute;
+    right: 15%;
+}
+
+.textContainer {
+    position: relative;
+    width: 90%;
+    max-width: 50%;
+    margin: 0 auto;
+    z-index: 4;
+    top: 75vh;
+}
+
+.textContainer h1, .textContainer p {
+    color: #bd0d16;
+    text-align: center;
+    font-family: 'Demons';
+    position: relative;
+}
+
+.textContainer h1 {
+    font-size: 5vh;
+    padding: 1%;
+    margin: 20px 0;
+    margin-top: 4vh;
+}
+
+#message {
+    color: white;
+    font-size: 2.3vh;
+    width: 40%;
+    box-sizing: border-box;
+    top: 65vh;
+    height: 60%;
+    margin-left: 16vw;
+}
+
+.grave {
+    background-image: url('/images/bday/graveyard.png');
+    background-repeat: repeat;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 25vh;
+    z-index: 1;
+    margin-left: 5%;
+    top: 70%;
+}
+.spikes {
+	display: flex;
+	z-index: 5;
+	position: absolute;
+	width: 70%;
+	margin-top: 30vh;
+	margin-left: 27vh;
+}
+
+#spike1, #spike2{
+	min-height:10%;
+
+}
+
+#spike1 {
+	margin-left: 5.5vw;
+
+
+
+}
+#spike2 {
+	margin-left: 52.5vw;
+
+}
+
+.textFrame {
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	width: 90vw;
+}
+#frame{
+	margin-left: 7vw;
+	margin-top: 55vh;
+	z-index: 6;
+	width: 80vw;
+	
+}
+
+.lightning{
+	display: flex;
+	position: absolute;
+	width: 85vw;
+	justify-content: space-between;
+	top: 95vh;
+	margin-left: 7vw;
+}
+#lightning1 img, #lightning2 img{
+	width: 35vw;
+	height: 35vh;
+
+
+
+}
+.circle {
+	border-radius: 50%;
+	position: absolute;
+	width: 30vw;
+	height: 30vw;
+	top: 130vh;
+	display: flex;
+	z-index: 2;
+	background-color: black;
+	margin-left: 33vw;
+}
+
+
+@font-face {
+    font-family: 'Demons';
+    src: url('/fonts/DemonsAndDarlings.ttf');
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .leftwall, .rightwall {
+        width: 8%;
+    }
+    
+    #heart {
+        width: 30%;
+    }
+    
+    #skelehead {
+        width: 30%;
+        top: 10%;
+    }
+    
+    #spider {
+        width: 8%;
+        left: 10%;
+        top: 3%;
+    }
+    
+    #tim, #mini {
+        width: 25%;
+    }
+    
+    #tim {
+        left: 10%;
+    }
+    
+    #mini {
+        right: 10%;
+    }
+    
+    .textContainer h1 {
+        font-size: 4vh;
+    }
+    
+    #message {
+        font-size: 1.8vh;
+    }
+    
+    #signature {
+        font-size: 2.5vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .leftwall, .rightwall {
+        width: 10%;
+    }
+    
+    #heart {
+        width: 40%;
+    }
+    
+    #skelehead {
+        width: 35%;
+        top: 8%;
+    }
+    
+    #spider {
+        width: 10%;
+        left: 5%;
+    }
+    
+    #tim, #mini {
+        width: 30%;
+        top: 12%;
+    }
+    
+    .textContainer h1 {
+        font-size: 3.5vh;
+    }
+    
+    #message {
+        font-size: 1.6vh;
+    }
+    
+    #signature {
+        font-size: 2vh;
+    }
+}

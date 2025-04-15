@@ -26,7 +26,12 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="background"></div>
+	<div class="background2"></div>
+	<div class="walls"><div id="wall1"></div><div id="wall2"></div></div>
+	<div class="star"><img src="/images/star.gif"></img></div>
+	<div class="rainbow"><img src="/images/intro.png"></img></div>
+	
 	<div id="navContainer">
 		<div id="navBar">
 			<ul id="navTable">
@@ -50,7 +55,10 @@
 
 		</div>
 	</div>		
-	
+	<div class="dragonvibe">
+		<img id="dragonvibe" src="/images/dragonvibes.gif"></img>
+	</div>
+	</div>
 	<div class="topLogo">
 		<img src="/images/5lush_logo.png" id="logo"/>
 		<img src="/images/lilslush.png" id="logo2"/>
@@ -89,9 +97,9 @@
 
 
 
-	<h1 style="text-align: center;">5LUSH TOP TEN HITS</h1>
+	<h1 id="title1">5LUSH TOP TEN HITS</h1>
 	<div id="songs-list"></div>
-	<h1 style="text-align: center;">5LUSH ESSENTIALS PLAYLIST</h1>
+	<h1 id="title2">5LUSH ESSENTIALS PLAYLIST</h1>
         <div id="slushPlaylist"></div>			
 		<script>
     			fetch('spotify-api/top_five')

@@ -1,0 +1,138 @@
+
+html {
+	background-image: url('/images/bday/bg.png');
+	background-repeat: repeat;
+	min-height: 100vh;
+	min-width: 100vw;
+	background-attachment: fixed;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.walls {
+	display: flex;
+	justify-content: space-between;
+	margin-top: -2%;
+}
+
+.leftwall {
+	width: 5%;
+	background-image: url('/images/bday/leftwall.png');
+	background-repeat: repeat;
+	min-height: 100vh;
+	margin-left: -1%;
+	margin-top: -2%;
+	position: fixed;
+}
+
+.rightwall {
+	width: 5%;
+	background-image: url('/images/bday/rightwall.png');
+	margin-left: 96%;
+	margin-top: -2%;
+	position: fixed;
+	min-height: 100vh;
+	background-repeat: repeat;
+
+
+
+}
+
+.heartContainer {
+	display: flex;
+	justify-content: center;
+}
+
+#heart{
+	width: 20%;
+	margin-top: 5%;
+	position: fixed;
+
+}
+#skelehead {
+	margin-top: 12%;
+	position: fixed;
+
+}
+#spider {
+	width: 5%;
+	height: auto;
+	margin-left: 14%;
+	transform: rotate(45deg);
+	margin-top: 4%;
+	position: fixed;
+
+}
+.timCurry {
+	display: flex;
+}
+#tim {
+	margin-left: 15%;
+	margin-top: 15%;
+	position: fixed;
+
+}
+.miniMe {
+	display: flex;
+}
+#mini {
+	margin-right: 15%;
+	margin-top: 15%;
+	right: 0;
+	position: fixed;
+	z-index: 1;
+}
+
+
+
+.textContainer{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.textContainer h1, p {
+	color: #bd0d16;
+	text-align: center;
+	font-family: 'Demons';
+}
+.textContainer h1 {
+	font-size: 10vh;
+	padding: 1%;
+	position: fixed;
+	margin-top: 65%;
+}
+#message{
+	font-size: 2vh;
+	width: 40%;
+	margin-top: 85%;
+	background-color: black;
+	position: fixed;
+	margin-left: 5%;
+}
+#signature{
+	font-size: 3vh;
+	margin-left: 30%;
+	position: fixed;
+	margin-top: 95%;
+	background: black;
+}
+.grave {
+	background-image: url('/images/bday/graveyard.png');
+	background-repeat: repeat;
+	margin-top: 25%;
+	display: flex;
+	min-height: 25vh;
+	position: fixed;
+	width: 75%;
+	margin-left: 12%;
+}
+@font-face {
+	font-family: 'Demons';
+	src: url('/fonts/DemonsAndDarlings.ttf');
+
+}

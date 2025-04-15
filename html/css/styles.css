@@ -1,5 +1,97 @@
+#title1 {
+	top: 110vh;
+	left: 40vw;
+
+}
+#title2 {
+	top: 200vh;
+	left: 40vw;
+}
+.walls{
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	height: 320vh;
+	width: 100vw;
+	top: -5vh;
+}
+
+#wall1, #wall2 {
+	background-repeat: repeat;
+	height: 400vh;
+	width: 4.5vw;
+}
+
+#wall1 {
+	background-image: url('/images/bday/left_wall.png');
+
+}
+
+#wall2 {
+	background-image: url('/images/bday/rightwall.png');
+	
+}
 
 
+.dragonvibe {
+	display: flex;
+	position: absolute;
+	top: 180vh;
+	height: 15vh;
+	left: 4vw;
+	width: 100vw;
+}
+.dragonvibe img {
+	width: 90vw;
+}
+.rainbow {
+	display: flex;
+	position: absolute;
+	top: 18vh;
+	height: 10vh;
+	left: 25vw;
+	width: 25vw;
+}
+
+
+
+.background {
+	width: 100vw;
+	top: -5vh;
+	position: absolute;
+	display: flex;
+	height: 155vh;
+	background-image: url('/images/backstar.gif');
+	background-repeat: repeat;
+}
+.background2 {
+	width: 100vw;
+	height: 250vh;
+	background-image: url('/images/bg3.gif');
+	background-repeat: repeat;
+	display: flex;
+	position: absolute;
+	top: 150vh;
+
+}
+.star {
+	height: 30vh;
+	width: 30vw;
+	left: 42vw;
+	top: 74vh;
+	display: flex;
+	position: absolute;
+	will-change: transform;
+}
+
+.dragons {
+	width: 100vw;
+	height: 5vh;
+	display: flex;
+	position: absolute;
+	top: 45vh;
+	left: 19vw;
+}
 @keyframes rotateAnimation {
 
   0% {
@@ -186,16 +278,16 @@
 }
 .bio{
   display: flex;
-  position: relative;
-  margin-top: -20vh;
+  position: absolute;
+  top: 75vh;
   width: 100%;
+  left: 33vw;
 }
 
 #bioText{
  color: white;
  text-align: center;
- margin-left: auto;
- margin-right: auto;
+ left: 45vw;
 }
 .videoContainer{
  display: flex;
@@ -215,7 +307,6 @@
 
 
 body {
-  background-color: #1e1e1e;
   color: white;
   justify-content: center;
   align-items: center;
@@ -223,18 +314,21 @@ body {
   margin: 0;
   margin-bottom: 50px;
   font-family: "Roboto";
+  overflow-x: hidden;
+  
 }
 
 
 #navContainer{
-  position: fixed;
+  position: absolute;
   top: 5%;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 7%;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 4;
+  left: 6vw;
 }
 #navBar {
   width: 20%;
@@ -257,29 +351,31 @@ body {
   gap: 0.5%;
   width: 20%;
   height: auto;
+  margin-right: 6vw;
 }
 
 .topLogo {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
-  perspective: 250%;
-  overflow: hidden;
+
 }
 #logo, #logo2{
+  position: absolute;
   width: 30%;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  
+  left: 35vw;
+  overflow-x: hidden;
 }
 #logo2 {
-  position: relative;
+  top: 35vh;
+  left: 35vw;
   animation: rotateAnimation 1.25s linear infinite;
   transform-style: preserve-3d;
-  object-fit: cover;
-  top: -15vh;
+  
+  
 }
 #socialIcon {
   width: auto;
@@ -303,8 +399,10 @@ body {
   gap: 0.1%;
   grid-template-columns: 15vw 15vw 15vw 15vw 15vw;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  left: 10vw;
+  z-index: 5;
+  position: absolute;
+  top: 125vh;
 }
 
 .song{
@@ -318,12 +416,23 @@ body {
   margin-top: 1%;
 }
 #slushPlaylist {
-  width: 100%;
+  width: 50%;
   display: flex;
-  
+  position: absolute;
   animation: scroll 120s linear infinite;
+  top: 225vh;
+  left: 6vw;
+  right: 6vw;
 }
+#songs-list h1{
+	top: 220vh;
+	left: 30vw;
+	
 
+}
+h1 {
+	position: absolute;
+}
 @keyframes scroll {
  0% {
 	 transform: translateX(0);
