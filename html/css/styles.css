@@ -1,3 +1,11 @@
+.pika {
+	display: flex;
+	position: absolute;
+	left: 40vw;
+	top: 220vh;
+}
+
+
 #title1 {
 	top: 110vh;
 	left: 40vw;
@@ -5,17 +13,24 @@
 }
 #title2 {
 	top: 200vh;
-	left: 40vw;
+	left: 37vw;
 }
+#slushPlaylist{
+	top: 260vh;
+
+
+
+}
+
+
 .walls{
 	display: flex;
 	justify-content: space-between;
 	position: absolute;
 	height: 320vh;
 	width: 100vw;
-	top: -5vh;
+	z-index: 2;
 }
-
 #wall1, #wall2 {
 	background-repeat: repeat;
 	height: 400vh;
@@ -420,7 +435,6 @@ body {
   display: flex;
   position: absolute;
   animation: scroll 120s linear infinite;
-  top: 225vh;
   left: 6vw;
   right: 6vw;
 }
