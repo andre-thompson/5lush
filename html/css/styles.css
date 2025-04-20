@@ -1,3 +1,45 @@
+#innerNav {
+	background-image: url('https://isntreal.neocities.org/backgrounds/t01-bg-checked.gif');
+	background-repeat: repeat;
+	height: 45vh;
+	width: 25vw;
+	margin-left: 2vw;
+	margin-right: 2vw;
+	margin-top: 25vh;
+}
+
+#innerNav p {
+	font-size: 0.75rem;
+	margin-left: 1vw;
+	margin-right: 1vw;
+}
+
+.nav {
+	display: flex;
+	position: absolute;
+	top: 35vh;
+	left: 6vw;
+	border: 1vw double #47151b;
+	z-index: 4;
+	width: 25vw;
+	height: 75vh;
+}
+.nav h1{
+	position: absolute;
+	font-size: 1.5rem;
+	text-align: center;
+	margin-left: 2vw;
+	margin-top: 5vh;
+}
+#checker {
+	background-image: url('https://isntreal.neocities.org/backgrounds/t01-bg-checked.gif');
+	background-repeat: repeat;
+	height: 15vh;
+	width: 20vw;;
+	position: absolute;
+	margin-top: 4vh;
+	margin-left: 2vw;
+}
 .pika {
 	display: flex;
 	position: absolute;
@@ -16,7 +58,7 @@
 	left: 37vw;
 }
 #slushPlaylist{
-	top: 260vh;
+	top: 310vh;
 
 
 
@@ -438,11 +480,15 @@ body {
   left: 6vw;
   right: 6vw;
 }
+.playlistElement {
+	width: 20vw;
+	height: 10vh;
+	max-height: 10vh;
+}
 #songs-list h1{
 	top: 220vh;
 	left: 30vw;
 	
-
 }
 h1 {
 	position: absolute;
@@ -465,7 +511,7 @@ h1 {
 }
 @media only screen and (max-width: 1000px) {
 #slushPlaylist {
-  animation: scroll 10s linear infinite;
+  animation: scroll infinite linear infinite;
 }
 #songs-list{
     grid-template-columns: 40vw 40vw;
