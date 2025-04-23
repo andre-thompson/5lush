@@ -619,12 +619,11 @@ body {
   width: 30%;
   height: auto;
   
-  left: 25vw;
+  left: 35vw;
   overflow-x: hidden;
 }
 #logo2 {
   top: 35vh;
-  left: 28vw;
   animation: rotateAnimation 1.25s linear infinite;
   transform-style: preserve-3d;
   
