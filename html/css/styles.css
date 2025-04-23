@@ -1,4 +1,66 @@
+.ufo {
+	display: flex;
+	position: absolute;
+	height: 7vh;
+	width: 7vw;
+	z-index: 5;
+	top: 10vh;
+	left: 10vw;
+}
 
+.orb {
+	display: flex;
+	position: absolute;
+	height: 10vh;
+	width: 10vw;
+	z-index: 5;
+	top: 25vh;
+	left: 10vw;
+}
+.supernova {
+	display: flex;
+	position: absolute;
+	height: 10vh;
+	width: 10vw;
+	z-index: 5;
+	top: 10vh;
+	right:7vw;
+}
+.neptune {
+	display: flex;
+	position: absolute;
+	height: 15vh;
+	width: 15vw;
+	z-index: 5;
+	top: 10vh;
+	left: 15vw;
+}
+.redplanet {
+	display: flex;
+	position: absolute;
+	height: 10vh;
+	width: 10vw;
+	z-index: 5;
+	top: 25vh;
+	right: 7vw;
+}
+.moon {
+	display: flex;
+	position: absolute;
+	height: 15vh;
+	width: 15vw;
+	z-index: 5;
+	top: 10vh;
+	right: 10vw;
+
+
+}
+.neptune a{
+	height: 15vh;
+	width: 15vw;
+
+
+}
 .top {
 	position: absolute;
 	left: 5vw;
