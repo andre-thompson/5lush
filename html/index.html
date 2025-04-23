@@ -10,6 +10,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/mobilestyles.css">
 		<link rel="icon" href="/images/favicon.ico">
 		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple_favicon.png">
 		<link rel="icon" type="image/png" href="/images/5lush_favicon.png">
@@ -26,7 +27,9 @@
 			</div>
 		</div>
 	</div>
-	
+	<button class="mobile-menu-toggle" id="menuToggle">
+ 		<i class="fas fa-bars"></i>
+	</button>
 	<div class="top"><img></img></div>
 	
 	<div class="neptune"><img src="/images/neptune.png"></img></div>
@@ -86,14 +89,15 @@
 	<div class="rainbow"><img src="/images/intro.png"></img></div>
 	<div class="pika"><img src="https://coolgifs.neocities.org/gifs/140.gif"></div>
 	<div id="navContainer">
-		<div id="navBar">
-			<ul id="navTable">
-				<li><a href="/index.html">HOME</a></li>
-				<li><a href="/music.html">MUSIC</a></li>
-				<li><a href="/refrences.html">REFRENCES</a></li>
-				<li><a href="/budget_wrapped.html">WRAPPED</a></li>
-			</ul>
-		</div>
+		<div id="navContainer">
+  			<div id="navBar">
+    				<ul id="navTable" class="mobile-hidden">
+      					<li><a href="/index.html">HOME</a></li>
+      					<li><a href="/music.html">MUSIC</a></li>
+      					<li><a href="/refrences.html">REFRENCES</a></li>
+      					<li><a href="/budget_wrapped.html">WRAPPED</a></li>
+    				</ul>
+  			</div>
 		
 		<div id="navSocials">
 			<a href="https://www.instagram.com/aaron.eisel/"><i id="socialIcon" class="fa-brands fa-instagram fa-xl" style="color: #ffffff;"></i></a>
@@ -209,6 +213,10 @@
 				console.log(data.topArtists);
 			})
 			*/
+			// Mobile menu toggle
+
+
+
     		</script>
   	</div>
 
