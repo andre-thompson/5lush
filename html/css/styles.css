@@ -1,3 +1,14 @@
+
+.top {
+	position: absolute;
+	left: 5vw;
+	width: 92vw;
+	height: 4vh;
+	background-image: url('/images/chains.gif');
+	z-index: 2;
+	background-repeat: repeat-x;
+	display: flex;
+}
 #gitA {
 	text-decoration: none;
 	display: inline;
@@ -97,7 +108,7 @@
     	box-shadow: 0px 0px 15px black;
 }
 #checker {
-	margin-top: 5vh;
+	top: 5vh;
 	margin-left: 2vw;
 }
 #checker2 {
