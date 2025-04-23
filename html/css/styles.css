@@ -1,3 +1,60 @@
+.house {
+	left: 40vw;
+	top: 85vh;
+	position: absolute;
+	display: flex;
+	z-index: 5;
+	width: 25vw;
+	height: 25vh;
+
+}
+.purpleplanet {
+	display: flex;
+	position: absolute;
+	height: 12vh;
+	width: 12vw;
+	top: 67vh;
+	right: 47vw;
+	z-index: 5;
+}
+
+
+
+
+.dragon2 {
+	display: flex;
+	position: absolute;
+	height: 15vh;
+	width: 15vw;
+	z-index: 5;
+	top: 72vh;
+	right: 27vw;
+}
+
+
+.thermal{
+	display: flex;
+	position: absolute;
+	height: 15vh;
+	width: 15vw;
+	z-index: 5;
+	top: 45vh;
+	right: 47vw;
+
+}
+
+
+.sun {
+	display: flex;
+	position: absolute;
+	height: 15vh;
+	width: 15vw;
+	z-index: 5;
+	top: 35vh;
+	right: 30vw;
+	transform: rotate(-25deg);
+
+}
 .ufo {
 	display: flex;
 	position: absolute;
@@ -270,13 +327,12 @@
 
 }
 .star {
-	height: 30vh;
-	width: 30vw;
-	left: 42vw;
-	top: 74vh;
+	height: 7vh;
+	width: 7vw;
+	left: 61vw;
+	top: 59vh;
 	display: flex;
 	position: absolute;
-	will-change: transform;
 }
 
 .dragons {
@@ -648,122 +704,6 @@ h1 {
 .playlistElement p {
  text-align: center;
 }
-@media only screen and (max-width: 1000px) {
-#slushPlaylist {
-  animation: scroll infinite linear infinite;
-}
-#songs-list{
-    grid-template-columns: 40vw 40vw;
-
-  }
-  .songImg{
-    width: 35%;
-
-  }
-  .topLogo{
-    top: -25%;
-  }
-  #logo2{
-    top: 10%;
-    z-index: 0;
-  }
-  #navContainer{
-    height: auto;
-    z-index: 1000;
-    position: relative;
-  }
-  #navSocials {
-    display: grid;
-    grid-template-columns: auto auto;
-    overflow: visible;
-    justify-content: center;
-    z-index: 1001;
-    width: auto;
-    border: 1px solid blue;
-   
-  }
-
-  #navSocials a i{
-    display: inline-block;
-    font-size: 4vw;
-  }
-  #navSocials a{
-    width: auto;
-    height: auto;
-    height: 4.5vw;
-    z-index: 2000;
-    visibility: visible;
-    position: relative;
-    min-height: 50px;
-    min-width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: auto;
-    text-decoration: none;
-   }
-   .bio{
-     top: -5vh;
-     font-size: 10px; 
-  }
-  
-  #navTable{
-    font-size: 10px;
-  }
-
-  #innerAlert{
-    width: 100%;
-    height: 80%;
-    margin-top: 50px;
-
-  }
-
-  #alertContentContainer{
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .alertImgContainer{
-    height: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10%;
-    width: 400px;
-  }
-  #alertImage{
-   height: 100%;
- }
-  .alertTextContainer{
-   width: 100%;
-   height: 100%;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 100px;
-
- }
-  #alertText1{
-   justify-content: center;
-   font-size: 2.5rem;
-   margin-top: 0;
- }
-  #alertText2{
-   justify-content: center;
-   font-size: 1rem;
- }
-
- .closeAlert i{
-  font-size: 1rem;
-  
- }
- #videoContent{
-   margin-bottom: 60%;
-
- }
-
-
-
-}
-
 
 
 
