@@ -1,7 +1,144 @@
-@media (min-width:1280) {
+@media (max-width:980px){
+	.alert {
+		margin-top: 20vh;
+	}
+	#innerAlert {
+		height: 35vh;
+		width: 65vw;
+
+
+	}
+	#alertText1 {
+		margin-top: 10vh;
+
+	}
+	#logo {
+		width: 45vw;
 	
 
+	}
+	#logo2 {
+		width: 45vw;
+		top: 10vh;
+	}
+	.rainbow {
+		top: 9vh;
+		left: 20vw;
+		width: 5vw;
+		height: 7vw;
+	}
+	.neptune {
+		height: 5vh;
+		width: 5vw;
+		top: 5vh;
+	}
+	.ufo {
+		height: 5vh;
+		width: 5vw;
+		top: 12vh;
+	}
+	.orb {
+		height: 6vh;
+		width: 6vw;
+		top: 15vh;
+		left: 20vw;
+
+	}
+	.moon {
+		height: 5vh;
+		width: 5vw;
+		top: 5vh;
+	
+	}
+	.supernova {
+		height: 5vh;
+		width: 5vw;
+		top: 12vh;
+
+	}
+	.redplanet{
+		width: 5vw;
+		height: 5vh;
+		right: 15vw;
+		top: 15vh;
+
+	}
+	.sun {
+		height: 8vh;
+		width: 8vw;
+		top: 30vh;
+		right: 27vw;
+
+
+	}
+
+	.thermal {
+		height: 10vh;
+		width: 10vw;
+		top: 27vh;
+		left: 27vw;
+
+	}
+	.purpleplanet{
+		height: 7vh;
+		width: 7vw;
+		top: 24vh;
+		left: 15vw;
+
+	}
+	.star {
+		height: 7vh;
+		width: 7vw;
+		top: 22vh;
+		margin-left: 15vw;
+	}
+	#checker, #checker2 {
+		width: 85vw;
+		height: 30vh;
+
+	}
+	#checker2 {
+		margin-top: 40vh;
+		left: 2vw;
+	}
+	#innerNav {
+		width: 75vw;
+		height: 15vh;
+
+	}
+	#innerNav p {
+		font-size: 0.5rem;
+	}
+
+	.navContainer {
+		justify-content: center;
+	}
+
+	#navTable {
+		width: 30vw;
+		font-size: 2.5vw;
+		top: -66vh;
+		left: -3vw;
+		position: absolute;
+	}
+	#navSocials {
+		width: 80vw;
+		margin-right: 30vw;
+		font-size: 10vw;
+		margin-top: -30vh;
+		z-index: 50;
+	
+	}
+	#socialIcon {
+		font-size: 5vw;
+	}
+	#spiderman {
+		margin-left: 25vw;
+	}
+	#hellokitty {
+		margin-left: 25vw;
+	}
 
 
 
-}
+}	
