@@ -167,16 +167,17 @@
 	margin-top: 5vh;
 }
 
-
 .stamps {
-	display: grid;
 	position: absolute;
-	grid-template-columns: 45% 45%;
 	margin-left: 7vw;
 	margin-top: 37vh;
+	display: grid;
+	grid-template: 10vw 10vw;
 }
 .stamps img{
 	margin-right: 5vw;
+	width: 5vw;
+	height: 5vh;
 }
 
 
@@ -311,7 +312,7 @@
 
 
 .background {
-	width: 150vw;
+	width: 100vw;
 	top: -5vh;
 	left: 0;
 	position: absolute;
@@ -467,20 +468,37 @@
 
 
 
+.house {
+    left: 400px; /* Fallback */
+    left: 40vw;
+    top: 850px; /* Fallback */
+    top: 85vh;
+    width: 250px; /* Fallback */
+    width: 25vw;
+    height: 250px; /* Fallback */
+    height: 25vh;
+}
 
+#logo2 {
+    -webkit-animation: rotateAnimation 1.25s linear infinite;
+    -moz-animation: rotateAnimation 1.25s linear infinite;
+    animation: rotateAnimation 1.25s linear infinite;
+    
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
 .alert{
   position: fixed;
   z-index: 10000;
   margin-top: 5%;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  left: 20vw;
 }
 #innerAlert{
-  width: 85%;
-  height: 75%;
+  width: 65vw;
+  height: 65vh;
   background-color: #1e1e2e;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   flex-direction: column;
 }
@@ -496,7 +514,7 @@
   display: flex;
 }
 .alertImgContainer{
- width: 60%;
+ width: 60vw;
  margin-left: 5%;
  display: grid;
  grid-template-columns: auto auto;
@@ -505,7 +523,8 @@
 
 .alertTextContainer{
   width: 25%;
-  margin-left: 5%;
+  justify-content: center;
+  display: flex;
 }
 
 #alertImage{
@@ -514,9 +533,8 @@
 }
 #alertText1{
   display: flex;
-  justify-content: left;
   font-size: 2.5vw;
-  margin-top: 80%;
+  margin-top: 20vh;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
 }
@@ -562,9 +580,7 @@ body {
   color: white;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  margin-bottom: 50px;
+  margin: 0px;
   font-family: "Roboto";
   overflow-x: hidden;
   
