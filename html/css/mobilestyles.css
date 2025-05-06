@@ -138,7 +138,18 @@
 	#hellokitty {
 		margin-left: 25vw;
 	}
-
+	#github {
+		width: 15vw;
+		height: 15vw;
+		top: -23vh;
+		position: absolute;
+	}
+	.dragon2 {
+		height: 8vh;
+		width: 8vw;
+		right: 17vw;
+		top: 78vh;
+	}
 
 
 }	
