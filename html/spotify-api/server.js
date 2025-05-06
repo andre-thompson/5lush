@@ -4,16 +4,60 @@ const dotenv = require('dotenv').config({ path: './api.env'});
 const querystring = require('querystring');
 const cors = require('cors');
 const crypto = require('crypto');
+const spotify = require('spotify-web-api-node');
 //spotify api info
 const clientID = process.env.SPOTIFY_CLIENT_ID;
 const clientSECRET = process.env.SPOTIFY_CLIENT_SECRET;
-//redirect
-const redirect_uri = 'https://5lush.com/budget_wrapped';
+
+const redirect_uri = 'https://5lush.com/spotify-api/callback';
+const spotifyAPI = new spotify({
+	clientId: clientID,
+	clientSecret: clientSECRET,
+	redirectUri: redirect_uri
+
+});
+
 //start server
 const app =  express();
 const PORT = 3000;
 app.use(cors());
 
+//login
+
+app.get('/login',(req,res)=>{
+	const scopes = ['user-read-private', 'user-read-email', 'user-read-playback-state', 'user-modify-playback-state'];
+	res.redirect(spotifyAPI.createAuthorizeURL(scopes));
+
+})
+
+//callback
+
+app.get('/callback',(req,res)=>{
+	const error = req.query.error;
+	const code = req.query.code;
+	const state = req.query.state;
+
+	if(error){
+		console.error('Error',error);
+		res.send(`Error: ${error}`);
+		return;
+	}
+
+	spotifyAPI.authorizationCodeGrant(code).then(data=>{
+		const accessToken = data.body['access_token'];
+		const refreshToken = data.body['refresh_token'];
+		const expiresIn = data.body['expires_in'];
+
+		spotifyAPI.setAccessToken(accessToken);
+		spotifyAPI.setRefreshToken(refreshToken);
+
+		res.send('Success!');
+
+
+
+	})
+
+})
 //random string function
 function generateRandomString(length) {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -43,6 +87,15 @@ const base64encode = (input) => {
 
 }
 */
+
+app.get('test', async(req, res) => {
+	res.send("working!");
+
+
+});
+
+
+
 const getToken = async () => {
     try {
         const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -294,21 +347,7 @@ app.get('/top_songs', async (req, res) => {
 		});
 	}
 });
-app.get('/login', async (req, res) => {
-	const codeVerifier = generateRandomString(64);
-	const hashed = await sha256(codeVerifier);
-	const codeChallenge = base64encode(hashed);
 
-	const scope = 'user-read-private user-read-email';
-	const authUrl = new URL("https://accounts.spotify.com/autohrize");
-
-	window.localStorage.setItem('code_verifier', codeVerifier);
-
-	const params = {
-
-	}
-
-});
 app.get('/playlist', async (req, res) => {
 	const playlist = await getPlaylistTracks('4tK1JS06cO9YLOYXVL8Jjz');
 	res.json(playlist);
