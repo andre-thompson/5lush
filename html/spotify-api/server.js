@@ -18,7 +18,7 @@ const spotifyAPI = new spotify({
 	redirectUri: redirect_uri
 
 });
-
+let tempData;
 //start server
 const app =  express();
 const PORT = 3000;
@@ -31,7 +31,7 @@ app.use(session({
 		secure: true,
 		httpOnly: true,
 		sameSite: 'lax',
-		maxAge: 24 * 60 * 60 * 1000;
+		maxAge: 24 * 60 * 60 * 1000
 	}
 }));
 //login
@@ -52,6 +52,7 @@ app.get('/callback', async (req,res) => {
 		if(!code) throw new Error('No code');
 		const data = await spotifyAPI.authorizationCodeGrant(code);
 		const { access_token, refresh_token, expires_in } = data.body;
+		tempData = [access_token, refresh_token, expires_in];
 
 		spotifyAPI.setAccessToken(access_token);
 		spotifyAPI.setRefreshToken(refresh_token);
@@ -74,7 +75,10 @@ app.get('/callback', async (req,res) => {
 
 
 app.get('/dashboard',(req,res)=> {
-	const accessToken = req.session.spotifyAccessToken;
+	const accessToken = tempData[0]; 
+	const refreshToken = tempData[1];
+	const expire = tempData[2];
+	
 	 res.send(`
     <!DOCTYPE html>
     <html lang="en">
