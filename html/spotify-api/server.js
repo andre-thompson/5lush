@@ -74,11 +74,30 @@ app.get('/callback', async (req,res) => {
 });
 
 
-app.get('/dashboard',(req,res)=> {
+app.get('/dashboard', async (req,res)=> {
 	const accessToken = tempData[0]; 
 	const refreshToken = tempData[1];
 	const expire = tempData[2];
-	
+	let response;
+	let display_name;
+	let img_src;
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${accessToken}`
+			},
+		});
+			const data = await response.json();
+			display_name = data.display_name;
+			img_src = data.images[0].url;
+	} catch (error) {
+		return null;
+
+
+	}
+
+
 	 res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -122,6 +141,9 @@ app.get('/dashboard',(req,res)=> {
           font-weight: bold;
           margin-top: 10px;
         }
+	p {
+		text-align: center;
+	}
       </style>
     </head>
     <body>
@@ -131,7 +153,8 @@ app.get('/dashboard',(req,res)=> {
         </div>
         
         <h1>Welcome to Your Dashboard</h1>
-        ${accessToken}
+        <p>${display_name}</p>
+	<img src="${img_src}"></img>
         
     </body>
     </html>
