@@ -5,6 +5,8 @@ const querystring = require('querystring');
 const cors = require('cors');
 const crypto = require('crypto');
 const spotify = require('spotify-web-api-node');
+const axios = require('axios');
+const session = require('express-session');
 //spotify api info
 const clientID = process.env.SPOTIFY_CLIENT_ID;
 const clientSECRET = process.env.SPOTIFY_CLIENT_SECRET;
@@ -21,43 +23,122 @@ const spotifyAPI = new spotify({
 const app =  express();
 const PORT = 3000;
 app.use(cors());
-
+app.use(session({
+	secret: 'your-secret-key',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { 
+		secure: true,
+		httpOnly: true,
+		sameSite: 'lax',
+		maxAge: 24 * 60 * 60 * 1000;
+	}
+}));
 //login
 
 app.get('/login',(req,res)=>{
 	const scopes = ['user-read-private', 'user-read-email', 'user-read-playback-state', 'user-modify-playback-state'];
-	res.redirect(spotifyAPI.createAuthorizeURL(scopes));
+	const state = crypto.randomBytes(16).toString('hex');
+	res.cookie('spotify_auth_state', state);
+	res.redirect(spotifyAPI.createAuthorizeURL(scopes, state));
 
 })
 
 //callback
 
-app.get('/callback',(req,res)=>{
-	const error = req.query.error;
-	const code = req.query.code;
-	const state = req.query.state;
+app.get('/callback', async (req,res) => {
+	try {
+		const code = req.query.code;
+		if(!code) throw new Error('No code');
+		const data = await spotifyAPI.authorizationCodeGrant(code);
+		const { access_token, refresh_token, expires_in } = data.body;
 
-	if(error){
-		console.error('Error',error);
-		res.send(`Error: ${error}`);
-		return;
+		spotifyAPI.setAccessToken(access_token);
+		spotifyAPI.setRefreshToken(refresh_token);
+		
+		req.session.spotifyAccessToken = access_token;
+		req.session.spotifyRefreshToken = refresh_token;
+		req.session.spotifyTokenExpires = Date.now() + (expires_in * 1000);
+		
+	
+
+
+		req.session.save(() => {
+			res.redirect('/spotify-api/dashboard');
+		});
+	}catch (error) {
+		console.error('auth error', error);
+
 	}
-
-	spotifyAPI.authorizationCodeGrant(code).then(data=>{
-		const accessToken = data.body['access_token'];
-		const refreshToken = data.body['refresh_token'];
-		const expiresIn = data.body['expires_in'];
-
-		spotifyAPI.setAccessToken(accessToken);
-		spotifyAPI.setRefreshToken(refreshToken);
-
-		res.send('Success!');
+});
 
 
+app.get('/dashboard',(req,res)=> {
+	const accessToken = req.session.spotifyAccessToken;
+	 res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dashboard</title>
+      <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f5f5f5;
+          margin: 0;
+          padding: 20px;
+          color: #333;
+        }
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success-banner {
+          background-color: #1DB954; /* Spotify green */
+          color: white;
+          padding: 15px;
+          border-radius: 5px;
+          margin-bottom: 20px;
+        }
+        .player-container {
+          margin-top: 30px;
+        }
+        button {
+          background-color: #1DB954;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: bold;
+          margin-top: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="success-banner" id="successBanner">
+          ✓ Successfully connected to Spotify!
+        </div>
+        
+        <h1>Welcome to Your Dashboard</h1>
+        ${accessToken}
+        
+    </body>
+    </html>
+  `);	
 
-	})
 
-})
+
+});
+
+
+
 //random string function
 function generateRandomString(length) {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -353,7 +434,7 @@ app.get('/playlist', async (req, res) => {
 	res.json(playlist);
 
 });
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
 	console.log("Server is listening on port: " + PORT);
 });
 
