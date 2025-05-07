@@ -18,7 +18,10 @@
         </head>
 
 	<body>
-		<button id="loginBtn" class="button-85" role="button">Login with Spotify</button>
+		<div class="buttons">
+			<button id="loginBtn" class="button-85" role="button">Login with Spotify for Wrapped</button>
+			<button id="loginBtn2" class="button-85" role="button">Budget Wrapped (Public Playlists no Spotify Login)</button>
+		</div>
 	</body>
 	<script>
 
@@ -54,5 +57,9 @@
 		
          
         });
+	document.getElementById('loginBtn2').addEventListener('click', async () => {
+		window.location.href = "/budget_wrapped.html";
+
+	});
     </script>	
 </html>
