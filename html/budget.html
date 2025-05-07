@@ -18,7 +18,7 @@
         </head>
 
 	<body>
-		<button id="loginBtn">Login with Spotify</button>
+		<button id="loginBtn" class="button-85" role="button">Login with Spotify</button>
 	</body>
 	<script>
 
@@ -47,12 +47,7 @@
         // Handle login button click
         document.getElementById('loginBtn').addEventListener('click', async () => {
   
-            fetch('spotify-api/login').then(response => response.json())
-	    .then(data => {
-	    	
-		
-
-	    });
+            window.location.href = "/spotify-api/login";
     			   
 	
 		
