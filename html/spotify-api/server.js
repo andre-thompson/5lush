@@ -37,7 +37,7 @@ app.use(session({
 //login
 
 app.get('/login',(req,res)=>{
-	const scopes = ['user-read-private', 'user-read-email', 'user-read-playback-state', 'user-modify-playback-state'];
+	const scopes = [ 'user-read-currently-playing','user-top-read','user-read-recently-played'];
 	const state = crypto.randomBytes(16).toString('hex');
 	res.cookie('spotify_auth_state', state);
 	res.redirect(spotifyAPI.createAuthorizeURL(scopes, state));
@@ -62,10 +62,10 @@ app.get('/callback', async (req,res) => {
 		req.session.spotifyTokenExpires = Date.now() + (expires_in * 1000);
 		
 	
-
+		dataToSend = encodeURIComponent(JSON.stringify(tempData));
 
 		req.session.save(() => {
-			res.redirect('/spotify-api/dashboard');
+			res.redirect(`/spotify-api/dashboard?data=${dataToSend}`);
 		});
 	}catch (error) {
 		console.error('auth error', error);
@@ -75,27 +75,80 @@ app.get('/callback', async (req,res) => {
 
 
 app.get('/dashboard', async (req,res)=> {
-	const accessToken = tempData[0]; 
-	const refreshToken = tempData[1];
-	const expire = tempData[2];
+	const data = JSON.parse(req.query.data);
+	let access_token = data[0];
+	let refresh_token = data[1];
+	let expire = data[2];
+	
+	
 	let response;
 	let display_name;
 	let img_src;
+	let top_artists;
+	let newToken;
+	console.log("before refresh token");
 	try {
-		response = await fetch(`https://api.spotify.com/v1/me`, {
-			method: 'GET',
+		const authHeader = 'Basic ' + Buffer.from(clientID + ':' + clientSECRET).toString('base64');
+		const params = new URLSearchParams();
+		params.append('grant_type', 'refresh_token');
+		params.append('refresh_token', refresh_token);
+		response = await fetch('https://accounts.spotify.com/api/token', {
+			method: 'POST',
 			headers: {
-				'Authorization': `Bearer ${accessToken}`
+				'Content-Type' : 'application/x-www-form-urlencoded',
+				'Authorization': authHeader
 			},
+			body: params
 		});
-			const data = await response.json();
-			display_name = data.display_name;
-			img_src = data.images[0].url;
+				const data = await response.json();
+				console.log("got refresh token" + data.access_token);
+				newToken = data.access_token;
+
 	} catch (error) {
 		return null;
 
 
 	}
+	
+	spotifyAPI.setAccessToken(newToken);
+	console.log("before profile info");
+	
+	try {
+		response2 = await fetch(`https://api.spotify.com/v1/me`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+	} catch (error) {
+		console.log(error);	
+	}
+
+			const data2 = await response2.json();
+			console.log("got data" + data2);
+			display_name = data2.display_name;
+			if(data2.images[0].url){img_src = data2.images[0].url;} else {img_src = 0};
+
+
+	
+
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data = await response.json();
+			top_artists = data;
+	} catch (error){
+		return null;
+	}
+	
+	topTwenty = top_artists.items;
+
+
+
 
 
 	 res.send(`
@@ -106,7 +159,13 @@ app.get('/dashboard', async (req,res)=> {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Dashboard</title>
       <style>
-        body {
+        h1{
+		text-align: center;
+	}
+	img {
+		margin-left: 25vw;
+	}
+	body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           background-color: #f5f5f5;
           margin: 0;
@@ -144,6 +203,11 @@ app.get('/dashboard', async (req,res)=> {
 	p {
 		text-align: center;
 	}
+	#avatar {
+		display: flex;
+		justify-content: center;
+		margin-left: 20vw;
+	}
       </style>
     </head>
     <body>
@@ -153,13 +217,28 @@ app.get('/dashboard', async (req,res)=> {
         </div>
         
         <h1>Welcome to Your Dashboard</h1>
-        <p>${display_name}</p>
-	<img src="${img_src}"></img>
-        
+        <!-- <h1>${display_name}</h1>
+	<img id="avatar" src="${img_src}"></img>
+	--><h1>Top Twenty Artists In The Past 6 Months</h1>
+	<div id="artistDiv"></div>
     </body>
+    <script>
+    	artistContainer = document.getElementById("artistDiv");
+    	const topArtists = ${JSON.stringify(topTwenty)};
+
+
+	topArtists.forEach((artist, index) => {
+		const name = document.createElement('h1');
+		const artImg = document.createElement('img');
+		name.textContent = (index + 1) + ". " + artist.name;
+		artImg.src = artist.images[2].url
+		artistContainer.append(name);
+		artistContainer.append(artImg);
+	});
+
+    </script>
     </html>
   `);	
-
 
 
 });
