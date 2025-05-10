@@ -88,7 +88,7 @@ app.get('/dashboard', async (req,res)=> {
 	let top_artists_long;
 	let top_artists_short;
 	let newToken;
-	console.log("before refresh token");
+	
 	try {
 		const authHeader = 'Basic ' + Buffer.from(clientID + ':' + clientSECRET).toString('base64');
 		const params = new URLSearchParams();
@@ -103,7 +103,6 @@ app.get('/dashboard', async (req,res)=> {
 			body: params
 		});
 				const data = await response.json();
-				console.log("got refresh token" + data.access_token);
 				newToken = data.access_token;
 
 	} catch (error) {
@@ -127,7 +126,6 @@ app.get('/dashboard', async (req,res)=> {
 	}
 
 			const data2 = await response2.json();
-			console.log("got data" + data2);
 			display_name = data2.display_name;
 			if(data2.images[0].url){img_src = data2.images[0].url;} else {img_src = 0};
 
@@ -148,9 +146,31 @@ app.get('/dashboard', async (req,res)=> {
 	}
 	
 
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=50`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data3 = await response.json();
+			top_artists_short = data3.items;
+	} catch (error){
+		return null;
+	}
 
-
-
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data4 = await response.json();
+			top_artists_long = data4.items;
+	} catch (error){
+		return null;
+	}
 
 
 
@@ -158,7 +178,7 @@ app.get('/dashboard', async (req,res)=> {
 
 	let top_artists_medium = top_artists.items;
 
-
+	
 
 
 
@@ -252,6 +272,19 @@ app.get('/dashboard', async (req,res)=> {
 		newContainer = document.createElement("div");
 		newContainer.setAttribute('id', 'artistDiv');
 		
+		const topArtists = ${JSON.stringify(top_artists_short)};
+		topArtists.forEach((artist, index) => {
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + artist.name;
+			artImg.src = artist.images[2].url
+			newContainer.append(name);
+			newContainer.append(artImg);
+		});
+
+
+
+
 		document.body.appendChild(newContainer);
 	}
     	function mediumTerm() {
@@ -280,6 +313,19 @@ app.get('/dashboard', async (req,res)=> {
 
 		newContainer = document.createElement("div");
 		newContainer.setAttribute('id', 'artistDiv');
+		
+		const topArtists = ${JSON.stringify(top_artists_long)};
+
+
+		topArtists.forEach((artist, index) => {
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + artist.name;
+			artImg.src = artist.images[2].url
+			newContainer.append(name);
+			newContainer.append(artImg);
+		});
+
 
 		document.body.appendChild(newContainer);
 		
