@@ -85,6 +85,8 @@ app.get('/dashboard', async (req,res)=> {
 	let display_name;
 	let img_src;
 	let top_artists;
+	let top_artists_long;
+	let top_artists_short;
 	let newToken;
 	console.log("before refresh token");
 	try {
@@ -111,7 +113,7 @@ app.get('/dashboard', async (req,res)=> {
 	}
 	
 	spotifyAPI.setAccessToken(newToken);
-	console.log("before profile info");
+	
 	
 	try {
 		response2 = await fetch(`https://api.spotify.com/v1/me`, {
@@ -133,7 +135,7 @@ app.get('/dashboard', async (req,res)=> {
 	
 
 	try {
-		response = await fetch(`https://api.spotify.com/v1/me/top/artists`, {
+		response = await fetch(`https://api.spotify.com/v1/me/top/artists?limit=50`, {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${newToken}`
@@ -145,7 +147,16 @@ app.get('/dashboard', async (req,res)=> {
 		return null;
 	}
 	
-	topTwenty = top_artists.items;
+
+
+
+
+
+
+
+
+
+	let top_artists_medium = top_artists.items;
 
 
 
@@ -163,7 +174,7 @@ app.get('/dashboard', async (req,res)=> {
 		text-align: center;
 	}
 	img {
-		margin-left: 25vw;
+		margin-left: 40vw;
 	}
 	body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -200,6 +211,12 @@ app.get('/dashboard', async (req,res)=> {
           font-weight: bold;
           margin-top: 10px;
         }
+	.nav {
+		position: absolute;
+		display: flex;
+		top: 105vh;
+		left: 35vw;
+	}
 	p {
 		text-align: center;
 	}
@@ -217,25 +234,62 @@ app.get('/dashboard', async (req,res)=> {
         </div>
         
         <h1>Welcome to Your Dashboard</h1>
-        <!-- <h1>${display_name}</h1>
+        <h1>${display_name}</h1>
 	<img id="avatar" src="${img_src}"></img>
-	--><h1>Top Twenty Artists In The Past 6 Months</h1>
+	<h1>Top Artists and Songs</h1>
 	<div id="artistDiv"></div>
+	<div class="nav">
+		<button class="button" onclick="shortTerm()">Past 4 Weeks</button>
+		<button class="button" onclick="mediumTerm()">Past 6 months</button>
+		<button class="button" onclick="longTerm()">Past 1 year</button>
+	</div>
     </body>
     <script>
-    	artistContainer = document.getElementById("artistDiv");
-    	const topArtists = ${JSON.stringify(topTwenty)};
+	function shortTerm() {
+		artistContainer = document.getElementById("artistDiv");
+		artistContainer.remove();
+		
+		newContainer = document.createElement("div");
+		newContainer.setAttribute('id', 'artistDiv');
+		
+		document.body.appendChild(newContainer);
+	}
+    	function mediumTerm() {
+    		artistContainer = document.getElementById("artistDiv");
+    		artistContainer.remove();
+		
+		newContainer = document.createElement("div");
+		newContainer.setAttribute('id', 'artistDiv');
+
+		const topArtists = ${JSON.stringify(top_artists_medium)};
 
 
-	topArtists.forEach((artist, index) => {
-		const name = document.createElement('h1');
-		const artImg = document.createElement('img');
-		name.textContent = (index + 1) + ". " + artist.name;
-		artImg.src = artist.images[2].url
-		artistContainer.append(name);
-		artistContainer.append(artImg);
-	});
+		topArtists.forEach((artist, index) => {
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + artist.name;
+			artImg.src = artist.images[2].url
+			newContainer.append(name);
+			newContainer.append(artImg);
+		});
+		document.body.appendChild(newContainer);
+	}
+	function longTerm() {
+		artistContainer = document.getElementById("artistDiv");
+		artistContainer.remove();
 
+		newContainer = document.createElement("div");
+		newContainer.setAttribute('id', 'artistDiv');
+
+		document.body.appendChild(newContainer);
+		
+	
+
+
+
+
+
+	}
     </script>
     </html>
   `);	
