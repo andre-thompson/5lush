@@ -1,3 +1,14 @@
+h1{
+	color: white;
+	position: absolute;
+	font-size: 3rem;
+	top: 10vh;
+	left: 5vw;
+}
+body{ 
+	background-color: black;
+	font-family: "VT323";
+}
 a {
 	text-decoration: none;
 	width: 10vw;
@@ -12,11 +23,12 @@ a {
 #navTower {
 	position: absolute;
 	top: 10vh;
+	left: 35vw;
 }
 
 .button-85 {
   top: 40vh;
-  left: 8vw;
+  left: 43vw;
   width: 10vw;
   position: absolute;
   padding: 0.6em 2em;
@@ -31,6 +43,9 @@ a {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  font-family: "VT323";
+  font-weight: 200;
+  font-size: 1rem;
 }
 
 .button-85:before {
