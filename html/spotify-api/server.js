@@ -87,6 +87,9 @@ app.get('/dashboard', async (req,res)=> {
 	let top_artists;
 	let top_artists_long;
 	let top_artists_short;
+	let top_tracks_short;
+	let top_tracks_long;
+	let top_tracks_medium;
 	let newToken;
 	
 	try {
@@ -171,7 +174,47 @@ app.get('/dashboard', async (req,res)=> {
 	} catch (error){
 		return null;
 	}
+	
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data5 = await response.json();
+			top_tracks_short = data5.items;
+			
+	} catch (error){
+		return null;
+	}
+	
 
+	try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=50`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data6 = await response.json();
+			top_tracks_medium = data6.items;
+	} catch (error){
+		return null;
+	}	
+	
+		try {
+		response = await fetch(`https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50`, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${newToken}`
+			},
+		});
+			const data7 = await response.json();
+			top_tracks_long = data7.items;
+	} catch (error){
+		return null;
+	}
 
 
 
@@ -190,11 +233,10 @@ app.get('/dashboard', async (req,res)=> {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Dashboard</title>
       <style>
-        h1{
-		text-align: center;
-	}
+      
 	img {
-		margin-left: 40vw;
+		width: 300px;
+		height: 300px;
 	}
 	body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -245,6 +287,21 @@ app.get('/dashboard', async (req,res)=> {
 		justify-content: center;
 		margin-left: 20vw;
 	}
+
+	#trackDiv {
+		flex-direction: column;
+		display: flex;
+		position: absolute;
+		top: 115vh;
+		margin-left: 55vw;
+	}
+	#artistDiv {
+		flex-direction: column;
+		display: flex;
+		position: absolute;
+		top: 115vh;
+		left: 20vw;
+	}
       </style>
     </head>
     <body>
@@ -257,85 +314,164 @@ app.get('/dashboard', async (req,res)=> {
         <h1>${display_name}</h1>
 	<img id="avatar" src="${img_src}"></img>
 	<h1>Top Artists and Songs</h1>
+	
 	<div id="artistDiv"></div>
+	<div id="trackDiv"></div>
+	
 	<div class="nav">
-		<button class="button" onclick="shortTerm()">Past 4 Weeks</button>
-		<button class="button" onclick="mediumTerm()">Past 6 months</button>
-		<button class="button" onclick="longTerm()">Past 1 year</button>
+		<button class="button" id="artistShort" onclick="shortTerm()">Past 4 Weeks</button>
+		<button class="button" id="artistMedium" onclick="mediumTerm()">Past 6 months</button>
+		<button class="button" id="artistLong" onclick="longTerm()">Past 1 year</button>
 	</div>
     </body>
     <script>
+    
 	function shortTerm() {
 		artistContainer = document.getElementById("artistDiv");
 		artistContainer.remove();
 		
+		trackContainer = document.getElementById("trackDiv");
+		trackContainer.remove();
+
+
+
+
 		newContainer = document.createElement("div");
 		newContainer.setAttribute('id', 'artistDiv');
 		
+		newTrackContainer = document.createElement("div");
+		newTrackContainer.setAttribute('id', 'trackDiv');
+
 		const topArtists = ${JSON.stringify(top_artists_short)};
+		const topTracks = ${JSON.stringify(top_tracks_short)};
+		
 		topArtists.forEach((artist, index) => {
 			const name = document.createElement('h1');
 			const artImg = document.createElement('img');
 			name.textContent = (index + 1) + ". " + artist.name;
-			artImg.src = artist.images[2].url
+			artImg.src = artist.images[2].url;
 			newContainer.append(name);
 			newContainer.append(artImg);
 		});
+		
+		topTracks.forEach((track, index) => {
+			const trackName = track.name;
+			const artistName = track.artists.map(artist => artist.name).join(', ');
+			const artSrc = track.album.images[0].url;
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + trackName + " by: " + artistName;
+			artImg.src = artSrc;
+			
+			newTrackContainer.append(name);
+			newTrackContainer.append(artImg);
 
 
+		});
 
 
 		document.body.appendChild(newContainer);
+		document.body.appendChild(newTrackContainer);
 	}
-    	function mediumTerm() {
-    		artistContainer = document.getElementById("artistDiv");
-    		artistContainer.remove();
+    
+	function mediumTerm() {
+		artistContainer = document.getElementById("artistDiv");
+		artistContainer.remove();
 		
+		trackContainer = document.getElementById("trackDiv");
+		trackContainer.remove();
+
+
+
+
 		newContainer = document.createElement("div");
 		newContainer.setAttribute('id', 'artistDiv');
+		
+		newTrackContainer = document.createElement("div");
+		newTrackContainer.setAttribute('id', 'trackDiv');
 
 		const topArtists = ${JSON.stringify(top_artists_medium)};
-
-
+		const topTracks = ${JSON.stringify(top_tracks_medium)};
+		
 		topArtists.forEach((artist, index) => {
 			const name = document.createElement('h1');
 			const artImg = document.createElement('img');
 			name.textContent = (index + 1) + ". " + artist.name;
-			artImg.src = artist.images[2].url
+			artImg.src = artist.images[2].url;
 			newContainer.append(name);
 			newContainer.append(artImg);
 		});
+		
+		topTracks.forEach((track, index) => {
+			const trackName = track.name;
+			const artistName = track.artists.map(artist => artist.name).join(', ');
+			const artSrc = track.album.images[0].url;
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + trackName + " by: " + artistName;
+			artImg.src = artSrc;
+			
+			newTrackContainer.append(name);
+			newTrackContainer.append(artImg);
+
+
+		});
+
+
 		document.body.appendChild(newContainer);
+		document.body.appendChild(newTrackContainer);
 	}
+	
+
+		
 	function longTerm() {
 		artistContainer = document.getElementById("artistDiv");
 		artistContainer.remove();
+		
+		trackContainer = document.getElementById("trackDiv");
+		trackContainer.remove();
+
+
+
 
 		newContainer = document.createElement("div");
 		newContainer.setAttribute('id', 'artistDiv');
 		
+		newTrackContainer = document.createElement("div");
+		newTrackContainer.setAttribute('id', 'trackDiv');
+
 		const topArtists = ${JSON.stringify(top_artists_long)};
-
-
+		const topTracks = ${JSON.stringify(top_tracks_long)};
+		
 		topArtists.forEach((artist, index) => {
 			const name = document.createElement('h1');
 			const artImg = document.createElement('img');
 			name.textContent = (index + 1) + ". " + artist.name;
-			artImg.src = artist.images[2].url
+			artImg.src = artist.images[2].url;
 			newContainer.append(name);
 			newContainer.append(artImg);
+		});
+		
+		topTracks.forEach((track, index) => {
+			const trackName = track.name;
+			const artistName = track.artists.map(artist => artist.name).join(', ');
+			const artSrc = track.album.images[0].url;
+			const name = document.createElement('h1');
+			const artImg = document.createElement('img');
+			name.textContent = (index + 1) + ". " + trackName + " by: " + artistName;
+			artImg.src = artSrc;
+			
+			newTrackContainer.append(name);
+			newTrackContainer.append(artImg);
+
+
 		});
 
 
 		document.body.appendChild(newContainer);
-		
-	
-
-
-
-
-
+		document.body.appendChild(newTrackContainer);
 	}
+		
     </script>
     </html>
   `);	
