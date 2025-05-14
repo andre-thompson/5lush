@@ -1,0 +1,72 @@
+@keyframes pop{
+    from{
+        transform:scale(0.95)
+    }
+
+    50%{
+        transform:scale(1)
+    }
+
+    to{
+        transform:scale(0.95)
+    }
+}
+@keyframes moveIt {
+  from {background-position: top;}
+  to {background-position: bottom;}
+}
+
+#emoBg {
+	background-image: url("/images/bgEmo.gif");
+	background-repeat: repeat;
+	position: absolute;
+	top: 35vh;
+	height: 100vh;
+	width: 40vw;
+	left: 2.5vw;
+	border: 1vw groove #7476e8;
+}
+
+#skullBg {
+	animation: moveIt 20s linear infinite;
+	background-image: url("/images/bgSkull.gif");
+	background-repeat: repeat;
+	position: absolute;
+	height: 100vh;
+	width: 40vw;
+	right: 2.5vw;
+	margin-top: 35vh;
+	border: 1vw groove #7476e8;
+}
+
+#wine {
+	position: absolute;
+	top: 10vh;
+
+}
+
+#name {
+	animation: pop 1s ease-in-out infinite alternate;
+	font-size: 4rem;
+	color: white;
+	position: absolute;
+	left: 10vw;
+	z-index: 2;
+}
+
+body{
+	font-family: "VT323";
+	background-color: black;
+
+}
+
+#domain {
+	text-decoration: none;
+	color: #7476e8;
+	position: absolute;
+	left: 20vw;
+	top: 22vh;
+	font-size: 1rem;
+	z-index: 2;
+}
+
