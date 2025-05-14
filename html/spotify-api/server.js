@@ -233,10 +233,31 @@ app.get('/dashboard', async (req,res)=> {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Dashboard</title>
       <style>
-      
+ 	@media(max-width:830px) {
+		img {
+			max-width: 30vw;
+			max-height: 30vw;
+		}
+		#artistDiv {
+			right: 2vw;
+			margin-top: -15vh;
+		}
+		
+		#trackDiv {
+			left: 2vw;
+			margin-top: -15vh;
+		}
+		.nav{
+			margin-left: -20vw;
+			margin-top: -40vh;
+		}
+		h1{
+			font-size: 1rem;
+		}
+	}
 	img {
-		width: 300px;
 		height: 300px;
+		width: 300px;
 	}
 	body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
