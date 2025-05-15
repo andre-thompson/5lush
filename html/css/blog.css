@@ -1,3 +1,38 @@
+#intrests h1, #nav h1, #blog h1{
+	color: #7476e8;
+	text-align: center;
+	font-size: 2.5rem;
+	margin-top: 1vh;
+}
+
+
+.neon {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #FDBEDD, 0 0 40px #FDBEDD, 0 0 80px #FDBEDD, 0 0 90px #FDBEDD, 0 0 100px #FDBEDD, 0 0 150px #FDBEDD;
+
+}
+
+#skull2Bg {
+	background-image: url("/images/bgSkull2.gif");
+	background-repeat: repeat;
+	width: 40vw;
+	height: 40vh;
+	position: absolute;
+	right: 2vw;
+	top: 35vh;
+	border: 1vw groove #7476e8;
+}
+
+#blinkies {
+	position: absolute;
+	right: 2vw;
+	top: 10vh;
+	display: grid;
+	grid-template-columns: 10vw 10vw 10vw 10vw;
+}
+#blinkies img {
+	height: 5vh;
+	width: 10vw;
+}
 @keyframes pop{
     from{
         transform:scale(0.95)
@@ -35,7 +70,7 @@
 	height: 100vh;
 	width: 40vw;
 	right: 2.5vw;
-	margin-top: 35vh;
+	margin-top: 85vh;
 	border: 1vw groove #7476e8;
 }
 
@@ -48,7 +83,7 @@
 #name {
 	animation: pop 1s ease-in-out infinite alternate;
 	font-size: 4rem;
-	color: white;
+	color: #7476e8;
 	position: absolute;
 	left: 10vw;
 	z-index: 2;
