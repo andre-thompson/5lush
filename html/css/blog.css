@@ -1,3 +1,30 @@
+#jojo img {
+	height: 10vh;
+	width: 10vw;
+	position: absolute;
+	z-index: 1;
+	margin-left: 10vw;
+}
+
+
+.stampContainer {
+	top: 90vh;
+	display: flex;
+	gap: 0px;
+	position: absolute;
+	
+}
+
+
+
+#purin img, #guts img, #ds img{
+	height: 10vh;
+	width: 10vw;
+	position: absolute;
+	z-index: 1;
+}
+
+
 #intrests h1, #nav h1, #blog h1{
 	color: #7476e8;
 	text-align: center;
@@ -8,9 +35,25 @@
 
 .neon {
     text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #FDBEDD, 0 0 40px #FDBEDD, 0 0 80px #FDBEDD, 0 0 90px #FDBEDD, 0 0 100px #FDBEDD, 0 0 150px #FDBEDD;
+}
+#purin, #guts, #ds #jojo{
+	position: relative;
+	height: 10vh;
+	width: 10vw;
+}
+#purin::after, #guts::after, #ds::after #jojo::after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url('/images/scanlines.png') repeat;
+	
+	
+	z-index: 3;
+	top: 0;
+	left: 0;
 
 }
-
 #skull2Bg {
 	background-image: url("/images/bgSkull2.gif");
 	background-repeat: repeat;
